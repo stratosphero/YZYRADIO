@@ -335,6 +335,34 @@ header h1 {
     height: 8px;
   }
 }
+#volumeSlider {
+  width: 100px;
+  height: 4px;
+  accent-color: #4bc267;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.time-stamps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ccc;
+  margin-top: -5px;
+  user-select: none;
+  font-family: monospace;
+}
+
+.time-stamps span {
+  opacity: 0.8;
+  transition: 0.2s;
+}
+
+.time-stamps span:hover {
+  opacity: 1;
+}
+
+
 </style>
 </head>
 <body>
@@ -355,13 +383,16 @@ header h1 {
     <button id="prev"><svg viewBox="0 0 24 24"><path d="M6 18V6h2v12H6zm3-6l12 6V6l-12 6z"/></svg></button>
     <button id="play"><svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     <button id="next"><svg viewBox="0 0 24 24"><path d="M16 6v12h-2V6h2zm-3 6L1 6v12l12-6z"/></svg></button>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
   </div>
   <div class="progress-bar" id="progressBar">
     <div class="progress" id="progress"></div>
     <div class="progress-dot" id="progressDot"></div>
   </div>
+  <div class="time-stamps">
+  <span id="currentTime">0:00</span>
+  <span id="duration">0:00</span>
 </div>
-
 <audio id="audio"></audio>
 
 <script>
@@ -369,6 +400,9 @@ const albumsData = [
   {id:"gaj",title:"Good Ass Job",year:2010,cover:"good-ass-job-cover.jpg",glow:['rgba(128,0,128,.25)','rgba(75,0,130,.25)','rgba(50,50,50,.2)'],tracks:[
     {title:"Flashing Lights 2",artist:"Kanye West",src:"flashing-lights-2.mp3"},
     {title:"Heartbreaker",artist:"Kanye West",src:"heartbreaker.mp3"}
+  ]},
+  {id:"tgfd",title:"Thank God For Drugs",year:2012,cover:"tgfd.gif",glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],tracks:[
+    {title:"Awesome",artist:"Kanye West",src:"awesome.mp3"}
   ]},
   {
   id: "yeezus2",
@@ -379,9 +413,9 @@ const albumsData = [
   tracks: [
     { title: "1. The World", artist: "Kanye West", src: "the-world.mp3" },
     { title: "2. So Special", artist: "Kanye West", src: "so-special.mp3" },
-    { title: "3. Black Skinhead (Remix)", artist: "Kanye West", src: "black-skinhead-remix.mp3" },
+    { title: "3. Black Skinhead (Remix)", artist: "Kanye West, Miley Cyrus, KIRBY, Travis Scott", src: "black-skinhead-remix.mp3" },
     { title: "4. Back Up Off The Ledge", artist: "Kanye West", src: "back-up-off-the-ledge.mp3" },
-    { title: "5. Bad Night", artist: "Kanye West", src: "bad-night.mp3" },
+    { title: "5. Bad Night", artist: "Kanye West, Young Thug, Tyga ", src: "bad-night.mp3" },
     { title: "6. Gut Feeling", artist: "Kanye West", src: "gut-feeling.mp3" },
     { title: "7. I Can't Let Go", artist: "Kanye West", src: "i-cant-let-go.mp3" },
     { title: "8. Never Let Me Go", artist: "Kanye West", src: "never-let-me-go.mp3" },
@@ -407,7 +441,7 @@ const albumsData = [
     {title:"Chakras",artist:"Kanye West",src:"chakras.mp3"}
   ]},
   {id:"swish",title:"SWISH",year:2016,cover:"swish-cover.jpg",glow:['rgba(255,140,0,.3)','rgba(255,100,0,.3)','rgba(255,50,0,.25)'],tracks:[
-    {title:"Highlights",artist:"Kanye West ft. Young Thug",src:"highlights.mp3"}
+    {title:"Highlights",artist:"Kanye West, Young Thug",src:"highlights.mp3"}
   ]},
   {
   id: "yebu",
@@ -560,6 +594,37 @@ audio.onended = () => {
   loadTrack(currentIndex);
   playTrack();
 };
+
+const volumeSlider = document.getElementById("volumeSlider");
+
+volumeSlider.addEventListener("input", () => {
+  audio.volume = volumeSlider.value;
+});
+
+const currentTimeEl = document.getElementById("currentTime");
+const durationEl = document.getElementById("duration");
+
+audio.addEventListener("timeupdate", () => {
+  if (!isNaN(audio.duration)) {
+    let current = formatTime(audio.currentTime);
+    let total = formatTime(audio.duration);
+    currentTimeEl.textContent = current;
+    durationEl.textContent = total;
+  }
+});
+
+function formatTime(sec) {
+  const minutes = Math.floor(sec / 60);
+  const seconds = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${minutes}:${seconds}`;
+}
+
+audio.addEventListener("loadedmetadata", () => {
+  durationEl.textContent = formatTime(audio.duration);
+  currentTimeEl.textContent = "0:00";
+});
+
+
 </script>
 </body>
 </html>
