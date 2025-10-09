@@ -51,42 +51,65 @@ header h1 {
 }
 
 .albums {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin: 50px 20px 150px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  margin: 50px 40px 150px;
+}
+
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .album {
   text-align: center;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 12px;
   transition: .3s;
+  width: 100%;
+  max-width: 180px;
+  opacity: 0;
+  transform: scale(0.92);
+  animation: fadeZoomIn .6s ease forwards;
 }
 
+.album:nth-child(1) { animation-delay: .05s; }
+.album:nth-child(2) { animation-delay: .1s; }
+.album:nth-child(3) { animation-delay: .15s; }
+.album:nth-child(4) { animation-delay: .2s; }
+.album:nth-child(5) { animation-delay: .25s; }
+
 .album img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 15px;
+  border-radius: 12px;
   transition: .4s cubic-bezier(.25,.8,.25,1);
 }
 
 .album img:hover {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .album p {
-  margin: 10px 0 3px;
-  font-size: 18px;
+  margin: 8px 0 2px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .album span {
-  font-size: 13px;
+  font-size: 12px;
   color: #aaa;
 }
+
 
 .player {
   position: fixed;
@@ -362,7 +385,9 @@ header h1 {
   opacity: 1;
 }
 
-
+@media (max-width: 768px) {
+  .volume-slider { display: none; }
+}
 </style>
 </head>
 <body>
@@ -401,9 +426,15 @@ const albumsData = [
     {title:"Flashing Lights 2",artist:"Kanye West",src:"flashing-lights-2.mp3"},
     {title:"Heartbreaker",artist:"Kanye West",src:"heartbreaker.mp3"}
   ]},
-  {id:"tgfd",title:"Thank God For Drugs",year:2012,cover:"tgfd.gif",glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],tracks:[
-    {title:"Awesome",artist:"Kanye West",src:"awesome.mp3"}
-  ]},
+  {id:"tgfd",
+ title:"Thank God For Drugs",
+ year:2012,
+ cover:"tgfd.gif",        
+ lockCover:"tgfd.jpg",    
+ glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],
+ tracks:[
+   {title:"Awesome",artist:"Kanye West",src:"awesome.mp3"}
+ ]},
   {
   id: "yeezus2",
   title: "Yeezus 2",
@@ -417,9 +448,9 @@ const albumsData = [
     { title: "4. Back Up Off The Ledge", artist: "Kanye West", src: "back-up-off-the-ledge.mp3" },
     { title: "5. Bad Night", artist: "Kanye West, Young Thug, Tyga ", src: "bad-night.mp3" },
     { title: "6. Gut Feeling", artist: "Kanye West", src: "gut-feeling.mp3" },
-    { title: "7. I Can't Let Go", artist: "Kanye West", src: "i-cant-let-go.mp3" },
-    { title: "8. Never Let Me Go", artist: "Kanye West", src: "never-let-me-go.mp3" },
-    { title: "9. NinaChop", artist: "Kanye West", src: "ninachop.mp3" },
+    { title: "7. I Can't Let Go", artist: "Kanye West, Flying Eagles", src: "i-cant-let-go.mp3" },
+    { title: "8. Never Let Me Go", artist: "Kanye West, KIRBY", src: "never-let-me-go.mp3" },
+    { title: "9. NinaChop", artist: "Kanye West, Young Thug, Swizz Beatz", src: "ninachop.mp3" },
     { title: "10. Tom Cruise", artist: "Kanye West", src: "tom-cruise.mp3" },
     { title: "11. When I See It", artist: "Kanye West", src: "when-i-see-it.mp3" },
     { title: "12. New Angels", artist: "Kanye West", src: "new-angels.mp3" },
@@ -492,7 +523,7 @@ albumsData.forEach(a=>{
 function openAlbum(a) {
   currentTracks = a.tracks;
   currentIndex = 0;
-  playerCover.src = a.cover;
+  playerCover.src = a.lockCover || a.cover;
   buildTracklist();
   loadTrack(0);
   player.classList.add("active");
@@ -624,7 +655,23 @@ audio.addEventListener("loadedmetadata", () => {
   currentTimeEl.textContent = "0:00";
 });
 
+const searchBar = document.querySelector(".search-bar");
 
+searchBar.addEventListener("input", () => {
+  const query = searchBar.value.toLowerCase().trim();
+  const albums = document.querySelectorAll(".album");
+  albums.forEach(album => {
+    const title = album.querySelector("p").textContent.toLowerCase();
+    const year = album.querySelector("span").textContent.toLowerCase();
+    if (title.includes(query) || year.includes(query)) {
+      album.style.display = "";
+      album.style.opacity = "1";
+      album.style.transform = "scale(1)";
+    } else {
+      album.style.display = "none";
+    }
+  });
+});
 </script>
 </body>
 </html>
