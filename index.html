@@ -52,11 +52,12 @@ header h1 {
 
 .albums {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* smaller min width */
+  gap: 15px; /* slightly larger gap for breathing room */
+  margin: 20px 15px 120px; /* tighter margins */
   justify-items: center;
-  margin: 50px 40px 150px;
 }
+
 
 @keyframes fadeZoomIn {
   from {
@@ -113,22 +114,22 @@ header h1 {
 
 .player {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  width: 90%;
-  max-width: 600px;
+  width: 94%;
+  max-width: 550px;
   background: rgba(255,255,255,.05);
   backdrop-filter: blur(25px) saturate(180%);
   border-radius: 25px;
-  padding: 15px 20px;
+  padding: 12px 15px;
   box-shadow: 0 20px 60px rgba(0,0,0,.8);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
   opacity: 0;
   pointer-events: none;
-  transition: background 1s ease, opacity .5s, transform .5s;
+  transition: opacity .5s, transform .5s;
   z-index: 200;
 }
 
@@ -431,9 +432,28 @@ const albumsData = [
  year:2012,
  cover:"tgfd.gif",        
  lockCover:"tgfd.jpg",    
- glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],
+ glow:['rgba(0,0,139,0.25)','rgba(204,204,0,0.25)','rgba(199,21,133,0.25)','rgba(0,100,0,0.25)','rgba(0,0,0,0.25)','rgba(64,64,64,0.25)'],
  tracks:[
-   {title:"Awesome",artist:"Kanye West",src:"awesome.mp3"}
+   {title:"1. I Am Not Home",artist:"Kanye West",src:"i-am-not-home.mp3"},
+   {title:"2. Yeezus",artist:"Kanye West",src:"yeezus.mp3"},
+   {title:"3. Send It Up",artist:"Kanye West",src:"send-it-up.mp3"},
+   {title:"4. Cant Get Over Me",artist:"Kanye West",src:"cant-get-over-me.mp3"},
+   {title:"5. Talk To Me",artist:"Kanye West",src:"talk-to-me.mp3"},
+   {title:"6. LOUDER",artist:"Kanye West",src:"louder.mp3"},
+   {title:"7. Good Things Don't Last",artist:"Kanye West",src:"good-things-dont-last.mp3"},
+   {title:"8. Perfect Bitch",artist:"Kanye West",src:"perfect-bitch.mp3"},
+   {title:"9. Blood On The Leaves",artist:"Kanye West",src:"blood-on-the-leaves.mp3"},
+   {title:"10. On Site",artist:"Kanye West",src:"on-site.mp3"},
+   {title:"11. GOD",artist:"Kanye West",src:"god.mp3"},
+   {title:"12. Guilt Trip",artist:"Kanye West",src:"guilt-trip.mp3"},
+   {title:"13. New Slaves",artist:"Kanye West",src:"new-slaves.mp3"},
+   {title:"14. Black Skinhead",artist:"Kanye West",src:"black-skinhead.mp3"},
+   {title:"15. Emotionless",artist:"Kanye West",src:"emotionless.mp3"},
+   {title:"16. No No No No",artist:"Kanye West",src:"no-no-no-no.mp3"},
+   {title:"17. Hollywood",artist:"Kanye West",src:"hollywood.mp3"},
+   {title:"18. Awesome",artist:"Kanye West",src:"awesome.mp3"},
+   {title:"19. One I Love",artist:"Kanye West",src:"one-i-love.mp3"},
+   {title:"20. Nobody To Love",artist:"Kanye West",src:"nobody-to-love.mp3"}
  ]},
   {
   id: "yeezus2",
