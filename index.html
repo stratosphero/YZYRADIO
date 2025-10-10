@@ -313,6 +313,12 @@ header h1 {
   }
 }
 
+.controls button#shuffle:hover {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 5px #1db954);
+}
+
+
 @media (max-width: 480px) {
   header h1 {
     font-size: 18px;
@@ -410,6 +416,12 @@ header h1 {
     <button id="play"><svg id="playIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     <button id="next"><svg viewBox="0 0 24 24"><path d="M16 6v12h-2V6h2zm-3 6L1 6v12l12-6z"/></svg></button>
     <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+    <button id="shuffle">
+  <svg viewBox="0 0 24 24" fill="white">
+    <path d="M13.151.922a.75.75 0 1 0-1.06 1.06L13.109 3H11.16a3.75 3.75 0 0 0-2.873 1.34l-6.173 7.356A2.25 2.25 0 0 1 .39 12.5H0V14h.391a3.75 3.75 0 0 0 2.873-1.34l6.173-7.356a2.25 2.25 0 0 1 1.724-.804h1.947l-1.017 1.018a.75.75 0 0 0 1.06 1.06L15.98 3.75zM.391 3.5H0V2h.391c1.109 0 2.16.49 2.873 1.34L4.89 5.277l-.979 1.167-1.796-2.14A2.25 2.25 0 0 0 .39 3.5z"/>
+    <path d="m7.5 10.723.98-1.167.957 1.14a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.829 2.828-2.829 2.828a.75.75 0 1 1-1.06-1.06L13.109 13H11.16a3.75 3.75 0 0 1-2.873-1.34l-.787-.938z"/>
+  </svg>
+</button>
   </div>
   <div class="progress-bar" id="progressBar">
     <div class="progress" id="progress"></div>
@@ -422,10 +434,38 @@ header h1 {
 <audio id="audio"></audio>
 
 <script>
+let isShuffle = false;
 const albumsData = [
   {id:"gaj",title:"Good Ass Job",year:2010,cover:"good-ass-job-cover.jpg",glow:['rgba(128,0,128,.25)','rgba(75,0,130,.25)','rgba(50,50,50,.2)'],tracks:[
-    {title:"Flashing Lights 2",artist:"Kanye West",src:"flashing-lights-2.mp3"},
-    {title:"Heartbreaker",artist:"Kanye West",src:"heartbreaker.mp3"}
+    {title:"1. Crazy Life",artist:"Kanye West",src:"crazy-life.mp3"},
+    {title:"2. Downtown",artist:"Kanye West",src:"downtown.mp3"},
+    {title:"3. Eyes Closed",artist:"Kanye West",src:"eyes-closed.mp3"},
+    {title:"4. Flashing Lights 2",artist:"Kanye West",src:"flashing-lights-2.mp3"},
+    {title:"5. Ghetto University",artist:"Kanye West",src:"ghetto-university.mp3"},
+    {title:"6. Flight School",artist:"Kanye West",src:"flight-school.mp3"},
+    {title:"7. Gorgeous",artist:"Kanye West",src:"gorgeous.mp3"},
+    {title:"8. Hard Horn Nightmare",artist:"Kanye West",src:"hard-horn-nightmare.mp3"},
+    {title:"9. Heartbreaker",artist:"Kanye West",src:"heartbreaker.mp3"},
+    {title:"10. Hell Of A Life",artist:"Kanye West",src:"hell-of-a-life.mp3"},
+    {title:"11. Higher",artist:"Kanye West",src:"higher.mp3"},
+    {title:"12. Holding Me Back",artist:"Kanye West",src:"holding-me-back.mp3"},
+    {title:"13. I'll Be Alright",artist:"Kanye West",src:"ill-be-alright.mp3"},
+    {title:"14. Ice Cube",artist:"Kanye West",src:"ice-cube.mp3"},
+    {title:"15. Take One For The Team",artist:"Kanye West",src:"take-one-for-the-team.mp3"},
+    {title:"16. Lonely",artist:"Kanye West",src:"lonely.mp3"},
+    {title:"17. Lost In The World",artist:"Kanye West",src:"lost-in-the-world.mp3"},
+    {title:"18. Mama's Boy",artist:"Kanye West",src:"mamas-boy.mp3"},
+    {title:"19. Never See Me Again",artist:"Kanye West",src:"never-see-me-again.mp3"},
+    {title:"20. No Parties In LA",artist:"Kanye West",src:"no-parties-in-la.mp3"},
+    {title:"21. POWER",artist:"Kanye West",src:"power.mp3"},
+    {title:"22. Runaway",artist:"Kanye West",src:"runaway.mp3"},
+    {title:"23. White Dress",artist:"Kanye West",src:"white-dress.mp3"},
+    {title:"24. Shoot Up The Station",artist:"Kanye West",src:"shoot-up-the-station.mp3"},
+    {title:"25. So Apalled",artist:"Kanye West",src:"so-apalled.mp3"},
+    {title:"26. Supernova",artist:"Kanye West",src:"supernova.mp3"},
+    {title:"27. Sweat On My Face",artist:"Kanye West",src:"sweat-on-my-face.mp3"},
+    {title:"28. The Joy",artist:"Kanye West",src:"the-joy.mp3"},
+    {title:"29. THROW MONEY EVERYWHERE",artist:"Kanye West",src:"throw-money-everywhere.mp3"},
   ]},
   {id:"tgfd",
  title:"Thank God For Drugs",
@@ -445,7 +485,7 @@ const albumsData = [
    {title:"9. Blood On The Leaves",artist:"Kanye West",src:"blood-on-the-leaves.mp3"},
    {title:"10. On Site",artist:"Kanye West",src:"on-site.mp3"},
    {title:"11. GOD",artist:"Kanye West",src:"god.mp3"},
-   {title:"12. Guilt Trip",artist:"Kanye West",src:"guilt-trip.mp3"},
+   {title:"12. Guilt Trip",artist:"Kanye West, Jay-Z, Kid Cudi",src:"guilt-trip.mp3"},
    {title:"13. New Slaves",artist:"Kanye West",src:"new-slaves.mp3"},
    {title:"14. Black Skinhead",artist:"Kanye West",src:"black-skinhead.mp3"},
    {title:"15. Emotionless",artist:"Kanye West",src:"emotionless.mp3"},
@@ -488,50 +528,94 @@ const albumsData = [
   ]
   },
   {id:"yandhi",title:"Yandhi",year:2018,cover:"yandhi-cover.jpg",glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],tracks:[
-    {title:"1. Chakras",artist:"Kanye West",src:"chakras.mp3"},
-    {title:"2. Calm (Interlude)",artist:"Kanye West",src:"calm.mp3"},
-    {title:"3. The Storm",artist:"Kanye West",src:"the-storm.mp3"},
-    {title:"4. Spread Your Wings",artist:"Kanye West",src:"spread-your-wings.mp3"},
-    {title:"5. New Body",artist:"Kanye West",src:"new-body.mp3"},
-    {title:"6. 80 Degrees",artist:"Kanye West",src:"80-degrees.mp3"},
-    {title:"7. Alien (Interlude)",artist:"Kanye West",src:"alien-interlude.mp3"},
-    {title:"8. Alien",artist:"Kanye West",src:"alien.mp3"},
-    {title:"9. Home",artist:"Kanye West",src:"home.mp3"},
-    {title:"10. City In The Sky",artist:"Kanye West",src:"city-in-the-sky.mp3"},
-    {title:"11. Brothers",artist:"Kanye West",src:"brothers.mp3"},
-    {title:"12. Cash To Burn",artist:"Kanye West",src:"cash-to-burn.mp3"},
-    {title:"13. We Got Love",artist:"Kanye West",src:"we-got-love.mp3"},
-    {title:"14. All Dreams Real",artist:"Kanye West",src:"all-dreams-real.mp3"},
-    {title:"15. The Garden",artist:"Kanye West",src:"the-garden.mp3"},
-    {title:"16. Last Name",artist:"Kanye West",src:"last-name.mp3"},
-    {title:"17. Law Of Attraction",artist:"Kanye West",src:"law-of-attraction.mp3"},
-    {title:"18. End Of It",artist:"Kanye West",src:"end-of-it.mp3"}
+    {title:"1. Chakras",artist:"Kanye West, The-Dream",src:"chakras.mp3"},
+    {title:"2. Calm (Interlude)",artist:"Kanye West, Ant Clemons, Ty Dolla $ign",src:"calm.mp3"},
+    {title:"3. The Storm",artist:"Kanye West, Ty Dolla $ign, Kid Cudi, XXXTentacion",src:"the-storm.mp3"},
+    {title:"4. Spread Your Wings",artist:"Kanye West, Ant Clemons",src:"spread-your-wings.mp3"},
+    {title:"5. New Body",artist:"Kanye West, Nicki Minaj, Ty Dolla $ign",src:"new-body.mp3"},
+    {title:"6. 80 Degrees",artist:"Kanye West, Ant Clemons",src:"80-degrees.mp3"},
+    {title:"7. Alien (Interlude)",artist:"Kanye West, Ant Clemons",src:"alien-interlude.mp3"},
+    {title:"8. Alien",artist:"Kanye West, Quavo, Young Thug, Kid Cudi, Ant Clemons",src:"alien.mp3"},
+    {title:"9. Home",artist:"Kanye West, Ant Clemons",src:"home.mp3"},
+    {title:"10. City In The Sky",artist:"Kanye West, Desiigner, Jeremih, Kid Cudi, The-Dream, Ty Dolla $ign, 070 Shake",src:"city-in-the-sky.mp3"},
+    {title:"11. Brothers",artist:"Kanye West, Ant Clemons",src:"brothers.mp3"},
+    {title:"12. Cash To Burn",artist:"Kanye West, Kenny G, Ant Clemons",src:"cash-to-burn.mp3"},
+    {title:"13. We Got Love",artist:"Kanye West, Teyana Taylor",src:"we-got-love.mp3"},
+    {title:"14. All Dreams Real",artist:"Kanye West, Ant Clemons",src:"all-dreams-real.mp3"},
+    {title:"15. The Garden",artist:"Kanye West, Ant Clemons, Ty Dolla $ign, The-Dream, Teyana Taylor",src:"the-garden.mp3"},
+    {title:"16. Last Name",artist:"Kanye West, Ant Clemons",src:"last-name.mp3"},
+    {title:"17. Law Of Attraction",artist:"Kanye West, Ant Clemons",src:"law-of-attraction.mp3"},
+    {title:"18. End Of It",artist:"Kanye West, Ant Clemons",src:"end-of-it.mp3"}
+  ]},
+  {id:"sohelpmegod",title:"So Help Me God",year:2015,cover:"so-help-me-god.jpg",glow:['rgba(220,220,220,0.3)','rgba(245,222,179,0.3)','rgba(0,0,0,0.25)','rgba(64,64,64,0.25)'],tracks:[
+    { title:"1. The World", artist:"Kanye West", src:"the-world-2.mp3" },
+    { title:"2. All Day", artist:"Kanye West, Theophilus London, Allan Kingdom, Paul McCartney", src:"all-day.mp3" },
+    { title:"3. Tom Cruise", artist:"Kanye West", src:"tom-cruise-2.mp3" },
+    { title:"4. Midas Touch", artist:"Kanye West", src:"midas-touch.mp3" },
+    { title:"5. Been Trill", artist:"Kanye West, Treated Crew", src:"been-trill.mp3" },
+    { title:"6. FourFiveSeconds", artist:"Kanye West, Rihanna, Paul McCartney", src:"45seconds.mp3" },
+    { title:"7. Piss On Your Grave", artist:"Travis Scott, Kanye West, Paul McCartney", src:"piss-on-your-grave.mp3" },
+    { title:"8. Souls", artist:"Kanye West", src:"souls.mp3" },
+    { title:"9. Ultimate Lie", artist:"Kanye West, Young Thug", src:"ultimate-lie.mp3" },
+    { title:"10. CAN U BE", artist:"Kanye West", src:"can-u-be.mp3" },
+    { title:"11. Woke Up", artist:"Kanye West", src:"woke-up.mp3" },
+    { title:"12. Prayer", artist:"Kanye West", src:"prayer.mp3" },
+    { title:"13. Southside Serenade", artist:"Kanye West", src:"southside-serenade.mp3" },
+    { title:"14. Won’t Lie", artist:"Kanye West", src:"wont-lie.mp3" },
+    { title:"15. Wolves", artist:"Kanye West, Vic Mensa, Sia", src:"wolves.mp3" },
+    { title:"16. Sanctified", artist:"Kanye West, Rick Ross, Big Sean", src:"sanctified.mp3" },
+    { title:"17. When I See It", artist:"Kanye West", src:"when-i-see-it.mp3" },
+    { title:"18. Only One", artist:"Kanye West, Paul McCartney, Ty Dolla $ign", src:"only-one.mp3" },
+    { title:"19. I Feel Like That", artist:"Kanye West, Ty Dolla $ign, Tony Williams", src:"i-feel-like-that.mp3" }
   ]},
   {id:"swish",title:"SWISH",year:2016,cover:"swish-cover.jpg",glow:['rgba(255,140,0,.3)','rgba(255,100,0,.3)','rgba(255,50,0,.25)'],tracks:[
     {title:"Highlights",artist:"Kanye West, Young Thug",src:"highlights.mp3"}
   ]},
   {
-  id: "yebu",
-  title: "YEBU",
-  year: 2023,
-  cover: "yebu-cover.jpg",
-  glow: ['rgba(255,255,255,.25)','rgba(200,200,200,.25)','rgba(150,150,150,.2)'],
+    id: "yebu",
+    title: "YEBU",
+    year: 2023,
+    cover: "yebu-cover.jpg",
+    glow: ['rgba(255,255,255,.25)','rgba(200,200,200,.25)','rgba(150,150,150,.2)'],
+    tracks: [
+      { title: "1. So Soon", artist: "Kanye West", src: "so-soon.mp3" },
+      { title: "2. Unlock", artist: "Kanye West", src: "unlock.mp3" },
+      { title: "3. Ceremony Freestyle", artist: "Kanye West", src: "ceremony-freestyle.mp3" },
+      { title: "4. Hoodrat", artist: "Kanye West", src: "hoodrat.mp3" },
+      { title: "5. Street Lights", artist: "Kanye West, Freddie Gibbs", src: "street-lights.mp3" },
+      { title: "6. Someday We’ll All Be Free", artist: "Kanye West", src: "someday-well-all-be-free.mp3" },
+      { title: "7. Love Love Love", artist: "Kanye West", src: "love-love-love.mp3" },
+      { title: "8. All In Love", artist: "Kanye West", src: "all-in-love.mp3" },
+      { title: "9. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
+      { title: "10. Matthew", artist: "Kanye West", src: "matthew.mp3" },
+      { title: "11. Big Boody (River)", artist: "Kanye West, Young Thug", src: "river.mp3" }
+    ]
+  },
+  {
+  id: "jesusisking2",
+  title: "JESUS IS KING: The Dr. Dre Version",
+  year: 2020,
+  cover: "jikdre.jpg",
+  glow: [
+    'rgba(173,216,230,0.25)',
+    'rgba(0,0,139,0.25)',     
+    'rgba(70,130,180,0.2)'     
+  ],
   tracks: [
-    { title: "1. So Soon", artist: "Kanye West", src: "so-soon.mp3" },
-    { title: "2. Unlock", artist: "Kanye West", src: "unlock.mp3" },
-    { title: "3. Ceremony Freestyle", artist: "Kanye West", src: "ceremony-freestyle.mp3" },
-    { title: "4. Hoodrat", artist: "Kanye West", src: "hoodrat.mp3" },
-    { title: "5. Street Lights", artist: "Kanye West", src: "street-lights.mp3" },
-    { title: "6. Someday We’ll All Be Free", artist: "Kanye West", src: "someday-well-all-be-free.mp3" },
-    { title: "7. Love Love Love", artist: "Kanye West", src: "love-love-love.mp3" },
-    { title: "8. All In Love", artist: "Kanye West", src: "all-in-love.mp3" },
-    { title: "9. Bobby Digital", artist: "Kanye West", src: "bobby-digital.mp3" },
-    { title: "10. Matthew", artist: "Kanye West", src: "matthew.mp3" },
-    { title: "11. Big Boody (River)", artist: "Kanye West", src: "river.mp3" }
-  ]
-}
+    { title: "1. Intro / Every Hour / Selah", artist: "Kanye West, Martha Marhsa Ambrosius, Sunday Service Choir", src: "intro-every-hour-selah.mp3" },
+    { title: "2. LA Monster", artist: "Kanye West, A$AP Ferg", src: "la-monster.mp3" },
+    { title: "3. Water (Remix)", artist: "Kanye West, Victory, Ant Clemons", src: "water-remix.mp3" },
+    { title: "4. Closed On Sunday (Remix)", artist: "Kanye West, Anderson .Paak", src: "closed-on-sunday-remix.mp3" },
+    { title: "5. On God (Remix)", artist: "Kanye West, THURZ", src: "on-god-remix.mp3" },
+    { title: "6. Hands On (Remix)", artist: "Kanye West, Travis Scott, Fred Hammond", src: "hands-on-remix.mp3" },
+    { title: "7. Everything We Need (Remix)", artist: "Kanye West, Ty Dolla $ign, Ant Clemons, Martha Ambrosius", src: "everything-we-need-remix.mp3" },
+    { title: "8. Ashes", artist: "Kanye West, Sunday Service Choir, Nikki Grier", src: "ashes.mp3" },
+    { title: "9. God Is (Remix)", artist: "Kanye West, Sunday Service Choir", src: "god-is-remix.mp3" },
+    { title: "10. Use This Gospel (Remix)", artist: "Kanye West, Eminem, Clipse, Kenny G", src: "use-this-gospel-remix.mp3" },
+    { title: "11. Follow God", artist: "Kanye West, Dr. Dre", src: "follow-god.mp3" }
+  ] 
+} 
 ];
-
 
 const albumsContainer = document.getElementById("albumsContainer"),
 player = document.getElementById("player"),
@@ -690,6 +774,29 @@ audio.addEventListener("loadedmetadata", () => {
   durationEl.textContent = formatTime(audio.duration);
   currentTimeEl.textContent = "0:00";
 });
+
+function shuffleArray(array) {
+  let shuffled = array.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+const shuffleBtn = document.getElementById("shuffle");
+
+shuffleBtn.onclick = () => {
+  isShuffle = !isShuffle;
+  shuffleBtn.style.filter = isShuffle ? "invert(50%) sepia(1) hue-rotate(90deg)" : "none";
+  if (isShuffle) {
+    currentTracks = shuffleArray(currentTracks);
+  } else {
+    openAlbum(albumsData.find(a => a.tracks.includes(currentTracks[currentIndex])));
+  }
+  buildTracklist();
+};
+
 
 const searchBar = document.querySelector(".search-bar");
 
