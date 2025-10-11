@@ -837,26 +837,7 @@ function openAlbum(album) {
   updatePlayerCover(album);
 }
 
-// === LOAD TRACK ===
-function loadTrack(i) {
-  if (!currentTracks[i]) return;
-  currentIndex = i;
-  audio.src = currentTracks[i].src;
-  highlightTrack();
-
-  if ("mediaSession" in navigator) {
-    const cleanTitle = currentTracks[i].title.replace(/^\d+\.\s*/, "");
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: cleanTitle,
-      artist: currentTracks[i].artist,
-      artwork: [{ src: playerCover.src, sizes: "300x300", type: "image/jpeg" }],
-    });
-    navigator.mediaSession.setActionHandler("play", playTrack);
-    navigator.mediaSession.setActionHandler("pause", pauseTrack);
-    navigator.mediaSession.setActionHandler("previoustrack", prevTrack);
-    navigator.mediaSession.setActionHandler("nexttrack", nextTrack);
-  }
-}
+function loadTrack(i) { audio.src = currentTracks[i].src; highlightTrack(); if ("mediaSession" in navigator) { let cleanTitle = currentTracks[i].title.replace(/^\d+\.\s*/, ""); navigator.mediaSession.metadata = new MediaMetadata({ title: cleanTitle, artist: currentTracks[i].artist, artwork: [{ src: playerCover.src, sizes: "300x300", type: "image/jpeg" }], }); navigator.mediaSession.setActionHandler("play", playTrack); navigator.mediaSession.setActionHandler("pause", pauseTrack); navigator.mediaSession.setActionHandler("previoustrack", prevTrack); navigator.mediaSession.setActionHandler("nexttrack", nextTrack); } }
 
 // === PLAY / PAUSE ===
 function playTrack() {
@@ -970,8 +951,10 @@ progressBar.onclick = (e) => {
 audio.onended = nextTrack;
 
 let audioContext, sourceNode, gainNode;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 function initAudio() {
+  if (isIOS) return; // skip AudioContext on iOS
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     sourceNode = audioContext.createMediaElementSource(audio);
@@ -979,6 +962,7 @@ function initAudio() {
     sourceNode.connect(gainNode).connect(audioContext.destination);
   }
 }
+
 
 document.body.addEventListener("click", initAudio, { once: true });
 
