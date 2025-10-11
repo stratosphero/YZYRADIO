@@ -2,6 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="yzyradio.png" type="image/png">
+<link rel="apple-touch-icon" sizes="180x180" href="yzyradio.png">
+<link rel="apple-touch-icon" sizes="152x152" href="yzyradio.png">
+<link rel="apple-touch-icon" sizes="120x120" href="yzyradio.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>YZY RADIO</title>
 <style>
@@ -52,12 +56,11 @@ header h1 {
 
 .albums {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* smaller min width */
-  gap: 15px; /* slightly larger gap for breathing room */
-  margin: 20px 15px 120px; /* tighter margins */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin: 20px 15px 120px; 
   justify-items: center;
 }
-
 
 @keyframes fadeZoomIn {
   from {
@@ -119,17 +122,17 @@ header h1 {
   transform: translateX(-50%) translateY(100px);
   width: 94%;
   max-width: 550px;
-  background: rgba(255,255,255,.05);
-  backdrop-filter: blur(25px) saturate(180%);
-  border-radius: 25px;
-  padding: 12px 15px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.8);
+  background: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(70px) saturate(250%); 
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .5s, transform .5s;
+  transition: opacity 0.5s, transform 0.5s, background 0.5s;
   z-index: 200;
 }
 
@@ -143,13 +146,19 @@ header h1 {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 25px;
-  background: linear-gradient(270deg, rgba(30,215,96,.2), rgba(45,85,200,.2), rgba(250,50,200,.2));
-  filter: blur(50px);
+  border-radius: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.1),
+    rgba(220,235,255,0.05),
+    rgba(255,255,255,0.08)
+  );
+  filter: blur(60px);
   z-index: -1;
-  animation: gradientShift 8s infinite linear;
-  opacity: .9;
+  opacity: 0.8;
 }
+
+
 
 @keyframes gradientShift {
   0%,100% { background-position: 0 50% }
@@ -199,7 +208,7 @@ header h1 {
 }
 
 .tracklist-mini div.active {
-  color: #49f287;
+  color: #5ff496c7;
   font-weight: bold;
   transform: scale(1.08);
   background: rgba(30,215,96,.15);
@@ -227,7 +236,7 @@ header h1 {
 
 .controls button:hover {
   transform: scale(1.3);
-  filter: drop-shadow(0 0 5px #1db954);
+  filter: drop-shadow(0 0 5px #ecfff2);
 }
 
 .controls svg {
@@ -315,9 +324,31 @@ header h1 {
 
 .controls button#shuffle:hover {
   transform: scale(1.3);
-  filter: drop-shadow(0 0 5px #1db954);
+  filter: drop-shadow(0 0 5px #b8c4bc);
 }
 
+#bonusButton {
+  background: rgba(255, 255, 255, 0.05); 
+  backdrop-filter: blur(20px) saturate(180%); 
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 30px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#bonusButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#bonusButton:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
 
 @media (max-width: 480px) {
   header h1 {
@@ -399,8 +430,7 @@ header h1 {
 </head>
 <body>
 <header>
-  <h1>YZY RADIO</h1>
-  <input class="search-bar" placeholder="Search albums...">
+<h1>YZY RADIO</h1>
 </header>
 <main>
   <div class="albums" id="albumsContainer"></div>
@@ -422,6 +452,7 @@ header h1 {
     <path d="m7.5 10.723.98-1.167.957 1.14a2.25 2.25 0 0 0 1.724.804h1.947l-1.017-1.018a.75.75 0 1 1 1.06-1.06l2.829 2.828-2.829 2.828a.75.75 0 1 1-1.06-1.06L13.109 13H11.16a3.75 3.75 0 0 1-2.873-1.34l-.787-.938z"/>
   </svg>
 </button>
+<button id="bonusButton">Bonus</button>
   </div>
   <div class="progress-bar" id="progressBar">
     <div class="progress" id="progress"></div>
@@ -435,6 +466,7 @@ header h1 {
 
 <script>
 let isShuffle = false;
+let showingBonus = false;
 const albumsData = [
   {id:"gaj",title:"Good Ass Job",year:2010,cover:"good-ass-job-cover.jpg",glow:['rgba(128,0,128,.25)','rgba(75,0,130,.25)','rgba(50,50,50,.2)'],tracks:[
     {title:"1. Crazy Life",artist:"Kanye West",src:"crazy-life.mp3"},
@@ -466,7 +498,11 @@ const albumsData = [
     {title:"27. Sweat On My Face",artist:"Kanye West",src:"sweat-on-my-face.mp3"},
     {title:"28. The Joy",artist:"Kanye West",src:"the-joy.mp3"},
     {title:"29. THROW MONEY EVERYWHERE",artist:"Kanye West",src:"throw-money-everywhere.mp3"},
-  ]},
+],
+bonus: [
+    { title: "Monster", artist: "Kanye West", src: "monster.mp3" },
+    { title: "That's My Bitch", artist: "Kanye West", src: "thats-my-bitch.mp3" }
+]},
   {id:"tgfd",
  title:"Thank God For Drugs",
  year:2012,
@@ -527,25 +563,36 @@ const albumsData = [
     { title: "23. So Crazy", artist: "Kanye West", src: "so-crazy.mp3" }
   ]
   },
-  {id:"yandhi",title:"Yandhi",year:2018,cover:"yandhi-cover.jpg",glow:['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],tracks:[
-    {title:"1. Chakras",artist:"Kanye West, The-Dream",src:"chakras.mp3"},
-    {title:"2. Calm (Interlude)",artist:"Kanye West, Ant Clemons, Ty Dolla $ign",src:"calm.mp3"},
-    {title:"3. The Storm",artist:"Kanye West, Ty Dolla $ign, Kid Cudi, XXXTentacion",src:"the-storm.mp3"},
-    {title:"4. Spread Your Wings",artist:"Kanye West, Ant Clemons",src:"spread-your-wings.mp3"},
-    {title:"5. New Body",artist:"Kanye West, Nicki Minaj, Ty Dolla $ign",src:"new-body.mp3"},
-    {title:"6. 80 Degrees",artist:"Kanye West, Ant Clemons",src:"80-degrees.mp3"},
-    {title:"7. Alien (Interlude)",artist:"Kanye West, Ant Clemons",src:"alien-interlude.mp3"},
-    {title:"8. Alien",artist:"Kanye West, Quavo, Young Thug, Kid Cudi, Ant Clemons",src:"alien.mp3"},
-    {title:"9. Home",artist:"Kanye West, Ant Clemons",src:"home.mp3"},
-    {title:"10. City In The Sky",artist:"Kanye West, Desiigner, Jeremih, Kid Cudi, The-Dream, Ty Dolla $ign, 070 Shake",src:"city-in-the-sky.mp3"},
-    {title:"11. Brothers",artist:"Kanye West, Ant Clemons",src:"brothers.mp3"},
-    {title:"12. Cash To Burn",artist:"Kanye West, Kenny G, Ant Clemons",src:"cash-to-burn.mp3"},
-    {title:"13. We Got Love",artist:"Kanye West, Teyana Taylor",src:"we-got-love.mp3"},
-    {title:"14. All Dreams Real",artist:"Kanye West, Ant Clemons",src:"all-dreams-real.mp3"},
-    {title:"15. The Garden",artist:"Kanye West, Ant Clemons, Ty Dolla $ign, The-Dream, Teyana Taylor",src:"the-garden.mp3"},
-    {title:"16. Last Name",artist:"Kanye West, Ant Clemons",src:"last-name.mp3"},
-    {title:"17. Law Of Attraction",artist:"Kanye West, Ant Clemons",src:"law-of-attraction.mp3"},
-    {title:"18. End Of It",artist:"Kanye West, Ant Clemons",src:"end-of-it.mp3"}
+  {
+  id: "yandhi",
+  title: "Yandhi",
+  year: 2018,
+  cover: "yandhi-cover.jpg",
+  glow: ['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],
+  tracks: [
+    { title: "1. Chakras", artist: "Kanye West, The-Dream", src: "chakras.mp3" },
+    { title: "2. Calm (Interlude)", artist: "Kanye West, Ant Clemons, Ty Dolla $ign", src: "calm.mp3" },
+    { title: "3. The Storm", artist: "Kanye West, Ty Dolla $ign, Kid Cudi, XXXTentacion", src: "the-storm.mp3" },
+    { title: "4. Spread Your Wings", artist: "Kanye West, Ant Clemons", src: "spread-your-wings.mp3" },
+    { title: "5. New Body", artist: "Kanye West, Nicki Minaj, Ty Dolla $ign", src: "new-body.mp3" },
+    { title: "6. 80 Degrees", artist: "Kanye West, Ant Clemons", src: "80-degrees.mp3" },
+    { title: "7. Alien (Interlude)", artist: "Kanye West, Ant Clemons", src: "alien-interlude.mp3" },
+    { title: "8. Alien", artist: "Kanye West, Quavo, Young Thug, Kid Cudi, Ant Clemons", src: "alien.mp3" },
+    { title: "9. Home", artist: "Kanye West, Ant Clemons", src: "home.mp3" },
+    { title: "10. City In The Sky", artist: "Kanye West, Desiigner, Jeremih, Kid Cudi, The-Dream, Ty Dolla $ign, 070 Shake", src: "city-in-the-sky.mp3" },
+    { title: "11. Brothers", artist: "Kanye West, Ant Clemons", src: "brothers.mp3" },
+    { title: "12. Cash To Burn", artist: "Kanye West, Kenny G, Ant Clemons", src: "cash-to-burn.mp3" },
+    { title: "13. We Got Love", artist: "Kanye West, Teyana Taylor", src: "we-got-love.mp3" },
+    { title: "14. All Dreams Real", artist: "Kanye West, Ant Clemons", src: "all-dreams-real.mp3" },
+    { title: "15. The Garden", artist: "Kanye West, Ant Clemons, Ty Dolla $ign, The-Dream, Teyana Taylor", src: "the-garden.mp3" },
+    { title: "16. Last Name", artist: "Kanye West, Ant Clemons", src: "last-name.mp3" },
+    { title: "17. Law Of Attraction", artist: "Kanye West, Ant Clemons", src: "law-of-attraction.mp3" },
+    { title: "18. End Of It", artist: "Kanye West, Ant Clemons", src: "end-of-it.mp3" }
+  ],
+  bonus: [
+    { title: "Bye Bye Baby", artist: "Kanye West", src: "bye-bye-baby.mp3" },
+    { title: "Brothers Forever", artist: "Kanye West", src: "brothers-forever.mp3" },
+    { title: "On God", artist: "Kanye West", src: "on-god.mp3" },
   ]},
   {id:"sohelpmegod",title:"So Help Me God",year:2015,cover:"so-help-me-god.jpg",glow:['rgba(220,220,220,0.3)','rgba(245,222,179,0.3)','rgba(0,0,0,0.25)','rgba(64,64,64,0.25)'],tracks:[
     { title:"1. The World", artist:"Kanye West", src:"the-world-2.mp3" },
@@ -571,6 +618,79 @@ const albumsData = [
   {id:"swish",title:"SWISH",year:2016,cover:"swish-cover.jpg",glow:['rgba(255,140,0,.3)','rgba(255,100,0,.3)','rgba(255,50,0,.25)'],tracks:[
     {title:"Highlights",artist:"Kanye West, Young Thug",src:"highlights.mp3"}
   ]},
+ {
+  id: "wolves",
+  title: "WOLVES",
+  year: 2016,
+  cover: "wolves.jpg",
+  glow: ['rgba(0,255,0,.25)', 'rgba(50,205,50,.25)', 'rgba(0,128,0,.25)'],
+  tracks: [
+    { title: "1. Glow", artist: "Kanye West, Drake", src: "glow.mp3" },
+    { title: "2. Blessings", artist: "Kanye West, Drake, Big Sean", src: "blessings.mp3" },
+    { title: "3. Pop Style", artist: "Kanye West, Drake, Jay-Z", src: "pop-style.mp3" },
+    { title: "4. FRIENDFLIP77", artist: "Kanye West, Drake", src: "friendflip77.mp3" },
+    { title: "5. When I See It", artist: "Kanye West, Drake, The Weeknd", src: "when-i-see-it.mp3" },
+    { title: "6. Tell Your Friends", artist: "Kanye West, Drake, The Weeknd, Nas", src: "tell-your-friends.mp3" }
+  ]
+},
+ {
+  id: "turbografx16",
+  title: "TURBOGRAFX16",
+  year: 2016,
+  cover: "turbografx16.jpg",
+glow: [
+  'rgba(255,215,0,0.4)',
+  'rgba(255,223,0,0.35)',
+  'rgba(238,201,0,0.3)', 
+  'rgba(255,239,128,0.25)', 
+  'rgba(212,175,55,0.2)' 
+],
+  tracks: [
+    { title: "1. ALL EYES ON YE", artist: "Kanye West", src: "all-eyes-on-ye.mp3" },
+    { title: "2. INDIGO INTERLUDE", artist: "Kanye West", src: "indigo-interlude.mp3" },
+    { title: "3. FACE DOWN", artist: "Kanye West", src: "face-down.mp3" },
+    { title: "4. FEEL ME", artist: "Kanye West", src: "feel-me.mp3" },
+    { title: "5. HOLD TIGHT", artist: "Kanye West", src: "hold-tight.mp3" },
+    { title: "6. JEALOUS", artist: "Kanye West", src: "jealous.mp3" },
+    { title: "7. MEDICATED", artist: "Kanye West", src: "medicated.mp3" },
+    { title: "8. CHAMPIONS", artist: "Kanye West", src: "champions.mp3" },
+    { title: "9. EURO", artist: "Kanye West", src: "euro.mp3" },
+    { title: "10. NO REASON", artist: "Kanye West", src: "no-reason.mp3" },
+    { title: "11. RAP TARANTINO", artist: "Kanye West", src: "rap-tarantino.mp3" },
+    { title: "12. ABOVE THE INFLUENCE", artist: "Kanye West", src: "above-the-influence.mp3" },
+    { title: "13. ONLY YE", artist: "Kanye West", src: "only-ye.mp3" },
+    { title: "14. SUPER STARRED", artist: "Kanye West", src: "super-starred.mp3" },
+    { title: "15. WELCOME TO UCLA", artist: "Kanye West", src: "welcome-to-ucla.mp3" },
+    { title: "16. INTERNET", artist: "Kanye West", src: "internet.mp3" }
+  ]
+},
+
+{
+  id: "loveeveryone",
+  title: "Love Everyone",
+  year: 2018,
+  cover: "love-everyone.jpg",
+glow: [
+  'rgba(245, 245, 255, 0.4)',
+  'rgba(180, 200, 255, 0.35)',
+  'rgba(150, 170, 200, 0.3)', 
+  'rgba(200, 200, 210, 0.25)', 
+  'rgba(220, 230, 255, 0.2)'   
+],
+  tracks: [
+  { title: "1. I Know I Know", artist: "Kanye West", src: "i-know-i-know.mp3" },
+  { title: "2. Amistad", artist: "Kanye West", src: "amistad.mp3" }, 
+  { title: "3. Fine Line", artist: "Kanye West, Bon Iver", src: "fine-line.mp3" }, 
+  { title: "4. XCTY", artist: "Kanye West", src: "xcty.mp3" },
+  { title: "5. Take Me To The Lights", artist: "Kanye West, Francis and The Lights, Chance The Rapper", src: "take-me-to-the-lights.mp3" }, 
+  { title: "6. Brothers (Prologue)", artist: "Kanye West, Chris Stylez", src: "brothers-prologue.mp3" }, 
+  { title: "7. Brothers", artist: "Kanye West, Charlie Wilson", src: "brothers-le.mp3" },  
+  { title: "8. Lovey", artist: "Kanye West, Ant Clemons", src: "lovey.mp3" }, 
+  { title: "9. Simulation Baptize", artist: "Kanye West, A$AP Rocky, Pardison Fontaine", src: "simulation-baptize.mp3" }, 
+  { title: "10. Ye vs. The People", artist: "Kanye West, T.I", src: "ye-vs-the-people.mp3" }, 
+  { title: "11. Lift Yourself", artist: "Kanye West", src: "lift-yourself.mp3" }
+]
+},
   {
     id: "yebu",
     title: "YEBU",
@@ -589,8 +709,39 @@ const albumsData = [
       { title: "9. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
       { title: "10. Matthew", artist: "Kanye West", src: "matthew.mp3" },
       { title: "11. Big Boody (River)", artist: "Kanye West, Young Thug", src: "river.mp3" }
-    ]
-  },
+    ],
+bonus: [
+    { title: "Lucifer", artist: "Kanye West", src: "lucifer.mp3" },
+    { title: "Thirsty", artist: "Kanye West", src: "thirsty.mp3" }
+]},
+  {
+    id: "gods-country",
+    title: "God's Country",
+    year: 2020,
+    cover: "gods-country.jpg",
+    glow: [
+  'rgba(34,139,34,0.3)',  
+  'rgba(107,142,35,0.3)',  
+  'rgba(60,179,113,0.25)', 
+  'rgba(70,130,180,0.25)', 
+  'rgba(30,144,255,0.2)'   
+  ],
+    tracks: [
+  { title: "1. Eternal Life", artist: "Kanye West", src: "eternal-life.mp3" },
+  { title: "2. 12,000 Acres", artist: "Kanye West", src: "12000-acres.mp3" },
+  { title: "3. Future Bounce", artist: "Kanye West, Travis Scott", src: "future-bounce.mp3" },
+  { title: "4. Lord I Need You", artist: "Kanye West", src: "lord-i-need-you.mp3" },
+  { title: "5. God's Country", artist: "Kanye West, Travis Scott", src: "gods-country.mp3" },
+  { title: "6. Tulsa", artist: "Kanye West", src: "tulsa.mp3" },
+  { title: "7. Fighting Fires", artist: "Kanye West", src: "fighting-fires.mp3" },
+  { title: "8. Praise God", artist: "Kanye West, KayCyy, Travis Scott", src: "praise-god.mp3" },
+  { title: "9. Keep My Sprit Alive", artist: "Kanye West, KayCyy, Westside Gunn, Conway The Machine", src: "keep-my-spirit-alive.mp3" },
+  { title: "10. Wash Us In The Blood", artist: "Kanye West, Travis Scott", src: "wash-us-in-the-blood.mp3" }
+     ],
+  bonus: [
+    { title: "Hear Our Prayers", artist: "Kanye West", src: "hear-our-prayers.mp3" }
+  ]},
+  
   {
   id: "jesusisking2",
   title: "JESUS IS KING: The Dr. Dre Version",
@@ -613,8 +764,10 @@ const albumsData = [
     { title: "9. God Is (Remix)", artist: "Kanye West, Sunday Service Choir", src: "god-is-remix.mp3" },
     { title: "10. Use This Gospel (Remix)", artist: "Kanye West, Eminem, Clipse, Kenny G", src: "use-this-gospel-remix.mp3" },
     { title: "11. Follow God", artist: "Kanye West, Dr. Dre", src: "follow-god.mp3" }
-  ] 
-} 
+  ],
+bonus: [
+    { title: "Glory", artist: "Kanye West, Dr. Dre", src: "glory.mp3" }
+]},
 ];
 
 const albumsContainer = document.getElementById("albumsContainer"),
@@ -640,7 +793,10 @@ albumsData.forEach(a=>{
   albumsContainer.appendChild(d);
 });
 
+let currentAlbumId = null; 
+
 function openAlbum(a) {
+  currentAlbumId = a.id;
   currentTracks = a.tracks;
   currentIndex = 0;
   playerCover.src = a.lockCover || a.cover;
@@ -664,6 +820,18 @@ function buildTracklist() {
   });
   highlightTrack();
 }
+
+
+document.getElementById("bonusButton").addEventListener("click", () => {
+  if (!currentAlbumId) return;
+  const currentAlbum = albumsData.find(a => a.id === currentAlbumId);
+  if (!currentAlbum || !currentAlbum.bonus) return;
+
+  showingBonus = !showingBonus; 
+  currentTracks = showingBonus ? currentAlbum.bonus : currentAlbum.tracks;
+  buildTracklist();
+});
+
 
 function highlightTrack() {
   [...tracklistMini.children].forEach((d, i) => {
