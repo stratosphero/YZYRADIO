@@ -369,10 +369,6 @@ header h1 {
   header h1 {
     font-size: 18px;
   }
-  .search-bar {
-    font-size: 13px;
-    padding: 6px 10px;
-  }
   .album img {
     width: 100px;
     height: 100px;
@@ -437,6 +433,14 @@ header h1 {
 .time-stamps span:hover {
   opacity: 1;
 }
+@media (max-width: 480px) {
+.controls button#shuffle {
+    width: 45px;  
+    height: 45px;
+}
+}
+
+.volume-slider { display: none; }
 
 @media (max-width: 768px) {
   .volume-slider { display: none; }
@@ -554,7 +558,8 @@ bonus: [
   id: "yeezus2",
   title: "Yeezus 2",
   year: 2013,
-  cover: "yeezus-2-cover.jpg",
+  cover: "yeezus-2.gif",
+  lockCover: "yeezus-2-cover.jpg",
   glow: ['rgba(255,0,0,.25)','rgba(255,69,0,.25)'],
   tracks: [
     { title: "1. The World", artist: "Kanye West", src: "the-world.mp3" },
@@ -636,9 +641,44 @@ bonus: [
     { title:"18. Only One", artist:"Kanye West, Paul McCartney, Ty Dolla $ign", src:"only-one.mp3" },
     { title:"19. I Feel Like That", artist:"Kanye West, Ty Dolla $ign, Tony Williams", src:"i-feel-like-that.mp3" }
   ]},
-  {id:"swish",title:"SWISH",year:2016,cover:"swish-cover.jpg",glow:['rgba(255,140,0,.3)','rgba(255,100,0,.3)','rgba(255,50,0,.25)'],tracks:[
-    {title:"Highlights",artist:"Kanye West, Young Thug",src:"highlights.mp3"}
-  ]},
+  {
+  id: "swish",
+  title: "SWISH",
+  year: 2016,
+  cover: "swish.gif",
+  lockCover: "swish-cover.jpg",
+glow: ['rgba(255,120,0,0.3)','rgba(255,100,0,0.3)','rgba(255,80,0,0.25)'],
+  tracks: [
+    {title:"1. Nina Chop",artist:"Kanye West",src:"nina-chop.mp3"},
+    {title:"2. Father Stretch My Hands Pt. 1",artist:"Kanye West",src:"father-stretch-my-hands-pt-1.mp3"},
+    {title:"3. Pt. 2",artist:"Kanye West",src:"pt-2.mp3"},
+    {title:"4. Over",artist:"Kanye West",src:"over.mp3"},
+    {title:"5. Forever",artist:"Kanye West",src:"forever.mp3"},
+    {title:"6. Enya",artist:"Kanye West",src:"enya.mp3"},
+    {title:"7. Rich Nigga Drunk",artist:"Kanye West",src:"rich-nigga-drunk.mp3"},
+    {title:"8. Deja Vu",artist:"Kanye West",src:"deja-vu.mp3"},
+    {title:"9. Low Lights",artist:"Kanye West",src:"low-lights.mp3"},
+    {title:"10. Highlights",artist:"Kanye West",src:"highlights.mp3"},
+    {title:"11. High Life",artist:"Kanye West",src:"high-life.mp3"},
+    {title:"12. Facts",artist:"Kanye West",src:"facts.mp3"},
+    {title:"13. 30 Hours",artist:"Kanye West",src:"30-hours.mp3"},
+    {title:"14. WE FUCK",artist:"Kanye West",src:"we-fuck.mp3"},
+    {title:"15. No More Parties In LA",artist:"Kanye West",src:"nmpila.mp3"},
+    {title:"16. Internet",artist:"Kanye West",src:"internet-2.mp3"},
+    {title:"17. Fade",artist:"Kanye West",src:"fade.mp3"},
+    {title:"18. Mitus Touch",artist:"Kanye West",src:"mitus-touch.mp3"},
+    {title:"19. FML",artist:"Kanye West",src:"fml.mp3"},
+    {title:"20. Real Friends",artist:"Kanye West",src:"real-friends.mp3"},
+    {title:"21. Wolves",artist:"Kanye West",src:"wolves-2.mp3"},
+  ],
+  bonus: [
+    { title: "Anxiety", artist: "Kanye West", src: "anxiety.mp3" },
+    { title: "Pressure", artist: "Kanye West", src: "pressure.mp3" },
+    { title: "Bad Night", artist: "Kanye West", src: "bad-night-2.mp3" },
+    { title: "Code Red", artist: "Kanye West", src: "code-red.mp3" },
+    { title: "The Mall", artist: "Kanye West", src: "the-mall.mp3" }
+  ]
+},
  {
   id: "wolves",
   title: "WOLVES",
@@ -685,13 +725,11 @@ glow: [
     { title: "16. INTERNET", artist: "Kanye West", src: "internet.mp3" }
   ]
 },
-
 {
   id: "loveeveryone",
   title: "Love Everyone",
   year: 2018,
-  cover: "love-everyone-2.png",
-  lockCover: "love-everyone-2.png",
+  cover: "brokenthing.png",
 glow: [
   'rgba(245, 245, 255, 0.4)',
   'rgba(180, 200, 255, 0.35)',
@@ -735,8 +773,7 @@ bonus: [
       { title: "11. Big Boody (River)", artist: "Kanye West, Young Thug", src: "river.mp3" }
     ],
 bonus: [
-    { title: "Lucifer", artist: "Kanye West", src: "lucifer.mp3" },
-    { title: "Thirsty", artist: "Kanye West", src: "thirsty.mp3" }
+    { title: "Lucifer", artist: "Kanye West", src: "lucifer.mp3" }
 ]},
   {
     id: "gods-country",
@@ -954,7 +991,7 @@ let audioContext, sourceNode, gainNode;
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 function initAudio() {
-  if (isIOS) return; // skip AudioContext on iOS
+  if (isIOS) return;
   if (!audioContext) {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
     sourceNode = audioContext.createMediaElementSource(audio);
