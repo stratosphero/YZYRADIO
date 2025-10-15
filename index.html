@@ -295,13 +295,11 @@ header h1 {
 }
 @media (max-width: 768px) {
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .search-bar {
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;   
+  gap: 10px;
+}
   .albums {
     gap: 15px;
     margin: 20px 5px 150px;
@@ -445,6 +443,7 @@ header h1 {
 @media (max-width: 768px) {
   .volume-slider { display: none; }
 }
+
 </style>
 </head>
 <body>
@@ -488,6 +487,7 @@ let currentAlbum = null;
 let currentTracks = [];
 let currentIndex = 0;
 let showingBonus = false;
+let shuffleQueue = [];
 let isShuffle = false;
 let shuffleHistory = [];
 const albumsData = [
@@ -872,9 +872,44 @@ bonus: [
 ],
   tracks: [
     { title: "1. Good Morning", artist: "Kanye West", src: "good-morning.mp3" },
+    { title: "2. Champion", artist: "Kanye West", src: "champion.mp3" },
+    { title: "3. Stronger", artist: "Kanye West", src: "stronger.mp3" }
   ],
 bonus: [
+    { title: "Bittersweet Poetry", artist: "Kanye West, John Mayer", src: "bittersweet-poetry.mp3" },
     { title: "Passenger", artist: "Kanye West", src: "passenger.mp3" }
+]},
+{
+  id: "kanyessoulmixshow",
+  title: "Kanye's Soul Mix Show",
+  year: 2006,
+  cover: "kanyessoulmixshow.jpg",
+  glow: [
+  'rgba(255,200,90,0.6)',
+  'rgba(200,140,60,0.55)', 
+  'rgba(170,110,40,0.5)',  
+  'rgba(120,80,30,0.45)',  
+],
+  tracks: [
+    { title: "1. Intro", artist: "Kanye West", src: "intro-show.mp3" }
+  ],
+},
+{
+  id: "lateorchestration",
+  title: "Late Orchestration",
+  year: 2006,
+  cover: "lateorchestration.jpg",
+  glow: [  
+  'rgba(160,120,40,0.55)', 
+  'rgba(120,80,40,0.5)',     
+  'rgba(100,60,30,0.45)',   
+  'rgba(70,40,20,0.45)',  
+],
+  tracks: [
+    { title: "1. Diamonds From Sierra Leone", artist: "Kanye West", src: "dfsl.mp3" }
+  ],
+bonus: [
+    { title: "Gold Digger (AOL Sessions)", artist: "Kanye West", src: "gold-digger-aol.mp3" }
 ]},
 ];
 
@@ -968,18 +1003,19 @@ function highlightTrack() {
   });
 }
 
-// === NEXT / PREV TRACKS ===
 function nextTrack() {
   if (!currentTracks.length) return;
 
   if (isShuffle) {
-    let nextIndex;
-    do {
-      nextIndex = Math.floor(Math.random() * currentTracks.length);
-    } while (nextIndex === currentIndex && currentTracks.length > 1);
+    if (!shuffleQueue || shuffleQueue.length === 0) {
+      shuffleQueue = currentTracks.map((_, i) => i);
+      for (let i = shuffleQueue.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffleQueue[i], shuffleQueue[j]] = [shuffleQueue[j], shuffleQueue[i]];
+      }
+    }
 
-    shuffleHistory.push(currentIndex);
-    currentIndex = nextIndex;
+    currentIndex = shuffleQueue.shift();
   } else {
     currentIndex = (currentIndex + 1) % currentTracks.length;
   }
@@ -1086,6 +1122,29 @@ function updatePlayerCover(album) {
     playerCover.style.animation = "";
   }
 }
+
+const menuButton = document.getElementById("menuButton");
+const menuContainer = document.getElementById("menuContainer");
+const linkButton = document.getElementById("linkButton");
+
+let isOpen = false;
+
+menuButton.addEventListener("click", () => {
+  isOpen = !isOpen;
+  if(isOpen) {
+    menuContainer.style.display = "flex";
+    requestAnimationFrame(() => menuContainer.classList.add("show"));
+  } else {
+    menuContainer.classList.remove("show");
+    setTimeout(() => {
+      if(!isOpen) menuContainer.style.display = "none";
+    }, 400);
+  }
+});
+
+linkButton.addEventListener("click", () => {
+  window.location.href = "https://forms.gle/32zQkWML1wMXq4QL9";
+});
 </script>
 </body>
 </html>
