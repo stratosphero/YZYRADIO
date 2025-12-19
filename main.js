@@ -386,13 +386,27 @@ bonus: [
   'rgba(180,60,255,0.45)',
 ],
   tracks: [
-    { title: "1. Good Morning", artist: "Kanye West", src: "good-morning.mp3" },
-    { title: "2. Champion", artist: "Kanye West", src: "champion.mp3" },
-    { title: "3. Stronger", artist: "Kanye West", src: "stronger.mp3" }
-  ],
+  { title: "1. Good Morning", artist: "Kanye West", src: "good-morning.mp3" },
+  { title: "2. Champion", artist: "Kanye West", src: "champion.mp3" },
+  { title: "3. Stronger", artist: "Kanye West", src: "stronger.mp3" },
+  { title: "4. I Wonder", artist: "Kanye West", src: "i-wonder.mp3" },
+  { title: "5. Good Life", artist: "Kanye West", src: "good-life.mp3" },
+  { title: "6. Can't Tell Me Nothing", artist: "Kanye West", src: "cant-tell-me-nothing.mp3" },
+  { title: "7. Barry Bonds", artist: "Kanye West", src: "barry-bonds.mp3" },
+  { title: "8. Drunk and Hot Girls", artist: "Kanye West", src: "drunk-and-hot-girls.mp3" },
+  { title: "9. Flashing Lights", artist: "Kanye West", src: "flashing-lights.mp3" },
+  { title: "10. Everything I Am", artist: "Kanye West", src: "everything-i-am.mp3" },
+  { title: "11. The Glory", artist: "Kanye West", src: "the-glory.mp3" },
+  { title: "12. Homecoming", artist: "Kanye West", src: "homecoming.mp3" },
+  { title: "13. Big Brother", artist: "Kanye West", src: "big-brother.mp3" },
+  { title: "14. Good Night", artist: "Kanye West", src: "good-night.mp3" }
+],
+
 bonus: [
     { title: "Bittersweet Poetry", artist: "Kanye West, John Mayer", src: "bittersweet-poetry.mp3" },
-    { title: "Passenger", artist: "Kanye West", src: "passenger.mp3" }
+    { title: "Passenger", artist: "Kanye West", src: "passenger.mp3" },
+    { title: "Building", artist: "Kanye West, Jay-Z", src: "building.mp3" },
+    { title: "Goodbye", artist: "Kanye West, Mos Def, Al Be Back", src: "goodbye.mp3" }
 ]},
 {
   id: "kanyessoulmixshow",
@@ -471,28 +485,34 @@ function loadTrack(i) { audio.src = currentTracks[i].src; highlightTrack(); if (
 
 function playTrack() {
   audio.play();
-  playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; // pause icon
+  playIcon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'; 
 }
 
 function pauseTrack() {
   audio.pause();
-  playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; // play icon
+  playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; 
 }
 
 
+let scrollTimeout = null;
+
 function buildTracklist() {
   tracklistMini.innerHTML = "";
+
   currentTracks.forEach((t, i) => {
     const d = document.createElement("div");
     d.textContent = t.title;
     d.className = i === currentIndex ? "active" : "";
+
     d.onclick = () => {
       currentIndex = i;
       loadTrack(i);
       playTrack();
     };
+
     tracklistMini.appendChild(d);
   });
+
   highlightTrack();
 }
 
@@ -505,14 +525,34 @@ function highlightTrack() {
         block: "nearest",
         inline: "center"
       });
-      d.style.transition = "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)";
-      d.style.transform = "scale(1.04)";
+
+      d.style.transform = "scale(1.04) translateY(-2px)";
       setTimeout(() => (d.style.transform = "scale(1)"), 400);
     } else {
       d.classList.remove("active");
     }
   });
 }
+
+tracklistMini.addEventListener(
+  "wheel",
+  (e) => {
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      e.preventDefault();
+      tracklistMini.scrollLeft += e.deltaY;
+    }
+
+
+    tracklistMini.classList.add("scrolling");
+
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      tracklistMini.classList.remove("scrolling");
+    }, 120);
+  },
+  { passive: false }
+);
 
 function nextTrack() {
   if (!currentTracks.length) return;

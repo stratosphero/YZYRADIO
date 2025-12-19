@@ -178,17 +178,34 @@ header h1 {
   scroll-behavior: smooth;
 }
 
-.tracklist-mini::-webkit-scrollbar { display: none; }
+.tracklist-mini::-webkit-scrollbar { 
+  display: none; 
+}
 
 .tracklist-mini div {
   flex: 0 0 auto;
   cursor: pointer;
   padding: 7px 10px;
   border-radius: 10px;
-  transition: .3s;
   max-width: 200px;
   text-overflow: ellipsis;
   overflow: hidden;
+
+
+  transition: 
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    background 0.3s,
+    color 0.3s;
+}
+
+
+.tracklist-mini.scrolling div {
+  transform: scale(0.92);
+}
+
+
+.tracklist-mini.scrolling div.active {
+  transform: scale(0.98);
 }
 
 .tracklist-mini div:hover {
@@ -201,6 +218,7 @@ header h1 {
   transform: scale(1.08);
   background: rgba(30,215,96,.15);
 }
+
 
 .controls {
   display: flex;
