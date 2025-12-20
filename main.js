@@ -303,6 +303,7 @@ bonus: [
     title: "YEBU",
     year: 2023,
     cover: "yebu-cover.jpg",
+    lockCover: "yebu-cover.jpg",
     glow: ['rgba(255,255,255,.25)','rgba(200,200,200,.25)','rgba(150,150,150,.2)'],
     tracks: [
       { title: "1. So Soon", artist: "Kanye West", src: "so-soon.mp3" },
