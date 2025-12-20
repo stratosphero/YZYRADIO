@@ -295,7 +295,9 @@ glow: [
   { title: "10. Showtime", artist: "Kanye West, James Blake", src: "showtime.mp3" }
 ],
 bonus: [
-  { title: "Things Change", artist: "Kanye West, James Blake", src: "things-change.mp3" }
+  { title: "Things Change", artist: "Kanye West, James Blake", src: "things-change.mp3" },
+  { title: "Through The High Wire", artist: "Kanye West, James Blake", src: "through-the-high-wire.mp3" }
+
 ]},
   {
     id: "yebu",
@@ -319,6 +321,20 @@ bonus: [
 bonus: [
     { title: "Lucifer", artist: "Kanye West", src: "lucifer.mp3" }
 ]},
+
+  {
+    id: "bully",
+    title: "BULLY",
+    year: 2026,
+    cover: "bully.jpg",
+    glow: ['rgba(101, 101, 101, 0.25)','rgba(72, 72, 72, 0.25)','rgba(22, 22, 22, 0.2)'],
+    tracks: [
+      { title: "1. PREACHER MAN", artist: "Kanye West", src: "preacher-man.mp3" }
+    ],
+bonus: [
+    { title: "MISSION CONTROL", artist: "Kanye West", src: "mission-control.mp3" }
+]},
+
   {
     id: "gods-country",
     title: "God's Country",
@@ -408,6 +424,23 @@ bonus: [
     { title: "Building", artist: "Kanye West, Jay-Z", src: "building.mp3" },
     { title: "Goodbye", artist: "Kanye West, Mos Def, Al Be Back", src: "goodbye.mp3" }
 ]},
+
+{
+  id: "record4hype",
+  title: "record4hype.zip",
+  year: 2010,
+  cover: "record4hype.jpg",
+  glow: [
+  'rgba(255, 90, 90, 0.6)',
+  'rgba(232, 122, 105, 0.55)', 
+  'rgba(253, 10, 10, 0.5)',  
+  'rgba(137, 51, 41, 0.45)',  
+],
+  tracks: [
+    { title: "1. Hell Of A Life", artist: "Kanye West", src: "intro-show.mp3" }
+  ],
+},
+
 {
   id: "kanyessoulmixshow",
   title: "Kanye's Soul Mix Show",
