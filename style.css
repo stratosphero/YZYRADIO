@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0a0a0a;
+  background: #080810;
   color: #fff;
   overflow-x: hidden;
 }
@@ -11,12 +11,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 25px 20px;
-  background: rgba(20,20,20,.9);
+  background: rgba(9, 11, 24, 0.82);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #000000;
   flex-wrap: wrap;
 }
 

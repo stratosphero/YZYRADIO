@@ -133,7 +133,6 @@ bonus: [
   ],
   bonus: [
     { title: "Bye Bye Baby", artist: "Kanye West", src: "bye-bye-baby.mp3" },
-    { title: "Brothers Forever", artist: "Kanye West", src: "brothers-forever.mp3" },
     { title: "On God", artist: "Kanye West", src: "on-god.mp3" },
   ]},
   {id:"sohelpmegod",title:"So Help Me God",year:2015,cover:"so-help-me-god.jpg",glow:['rgba(220,220,220,0.3)','rgba(245,222,179,0.3)','rgba(0,0,0,0.25)','rgba(64,64,64,0.25)'],tracks:[
@@ -206,8 +205,7 @@ glow: ['rgba(255,120,0,0.3)','rgba(255,100,0,0.3)','rgba(255,80,0,0.25)'],
     { title: "2. Blessings", artist: "Kanye West, Drake, Big Sean", src: "blessings.mp3" },
     { title: "3. Pop Style", artist: "Kanye West, Drake, Jay-Z", src: "pop-style.mp3" },
     { title: "4. FRIENDFLIP77", artist: "Kanye West, Drake", src: "friendflip77.mp3" },
-    { title: "5. When I See It", artist: "Kanye West, Drake, The Weeknd", src: "when-i-see-it.mp3" },
-    { title: "6. Tell Your Friends", artist: "Kanye West, Drake, The Weeknd, Nas", src: "tell-your-friends.mp3" }
+    { title: "5. Tell Your Friends", artist: "Kanye West, Drake, The Weeknd, Nas", src: "tell-your-friends.mp3" }
   ]
 },
  {
@@ -267,7 +265,8 @@ glow: [
   { title: "11. Lift Yourself", artist: "Kanye West", src: "lift-yourself.mp3" }
 ],
 bonus: [
-  { title: "Ghost Town", artist: "Kanye West", src: "ghost-town.mp3" }
+  { title: "Ghost Town", artist: "Kanye West", src: "ghost-town.mp3" },
+  { title: "Brothers Forever", artist: "Kanye West", src: "brothers-forever.mp3" }
 ]},
 {
   id: "war",
@@ -323,17 +322,51 @@ bonus: [
 ]},
 
   {
-    id: "bully",
-    title: "BULLY",
-    year: 2026,
-    cover: "bully.jpg",
-    glow: ['rgba(101, 101, 101, 0.25)','rgba(72, 72, 72, 0.25)','rgba(22, 22, 22, 0.2)'],
+    id: "vultures-2",
+    title: "VULTURES 2 (DIGITAL DELUXE)",
+    year: 2024,
+    cover: "vultures-2.jpg",
+    glow: ['rgba(49, 72, 108, 0.25)','rgba(144, 141, 102, 0.25)','rgba(40, 39, 47, 0.2)'],
     tracks: [
-      { title: "1. PREACHER MAN", artist: "Kanye West", src: "preacher-man.mp3" }
+      { title: "1. BELIEVER", artist: "¥$, Kanye West, Ty Dolla $ign", src: "believer.mp3" },
+      { title: "2. CAN U BE", artist: "¥$, Kanye West, Ty Dolla $ign", src: "can-u-be-v2.mp3" },
+      { title: "3. DRUNK", artist: "¥$, Kanye West, Ty Dolla $ign", src: "drunk.mp3" },
+      { title: "4. GUN TO MY HEAD", artist: "¥$, Kanye West, Ty Dolla $ign", src: "gun-to-my-head.mp3" },
+      { title: "5. TAKE OFF YOUR DRESS", artist: "¥$, Kanye West, Ty Dolla $ign", src: "take-off-your-dress.mp3" },
     ],
 bonus: [
-    { title: "MISSION CONTROL", artist: "Kanye West", src: "mission-control.mp3" }
+    { title: "RIVER (AUGUST 3RD VERSION)", artist: "¥$, Kanye West, Ty Dolla $ign", src: "river-v2.mp3" }
 ]},
+
+{
+  id: "bully",
+  title: "BULLY",
+  year: 2026,
+  cover: "bully.jpg",
+  glow: [
+    "rgba(101, 101, 101, 0.25)",
+    "rgba(72, 72, 72, 0.25)",
+    "rgba(22, 22, 22, 0.2)"
+  ],
+  tracks: [
+    { title: "1. PREACHER MAN", artist: "Ye, Kanye West", src: "preacher-man.mp3" },
+    { title: "2. BEAUTY AND THE BEAST", artist: "Ye, Kanye West", src: "beauty-and-the-beast.mp3" },
+    { title: "3. DAMN", artist: "Ye, Kanye West", src: "damn.mp3" },
+    { title: "4. LAST BREATH", artist: "Ye, Kanye West", src: "last-breath.mp3" },
+    { title: "5. LOSING YOUR MIND", artist: "Ye, Kanye West", src: "losing-your-mind.mp3" },
+    { title: "6. HIGHS AND LOWS", artist: "Ye, Kanye West", src: "highs-and-lows.mp3" },
+    { title: "7. WHITE LINES", artist: "Ye, Kanye West", src: "white-lines.mp3" },
+    { title: "8. BULLY", artist: "Ye, Kanye West", src: "bully.mp3" },
+    { title: "9. CIRCLES", artist: "Ye, Kanye West", src: "circles.mp3" },
+    { title: "10. PEOPLE LIKE ME", artist: "Ye, Kanye West", src: "people-like-me.mp3" },
+    { title: "11. CAN'T HURRY LOVE", artist: "Ye, Kanye West", src: "cant-hurry-love.mp3" },
+    { title: "12. THIS ONE HERE", artist: "Ye, Kanye West", src: "this-one-here.mp3" }
+  ],
+  bonus: [
+    { title: "MISSION CONTROL", artist: "Ye, Kanye West", src: "mission-control.mp3" }
+  ]
+},
+
 
   {
     id: "gods-country",
@@ -431,15 +464,32 @@ bonus: [
   year: 2010,
   cover: "record4hype.jpg",
   glow: [
-  'rgba(255, 90, 90, 0.6)',
-  'rgba(232, 122, 105, 0.55)', 
-  'rgba(253, 10, 10, 0.5)',  
-  'rgba(137, 51, 41, 0.45)',  
-],
-  tracks: [
-    { title: "1. Hell Of A Life", artist: "Kanye West", src: "intro-show.mp3" }
+    "rgba(255, 90, 90, 0.6)",
+    "rgba(232, 122, 105, 0.55)",
+    "rgba(253, 10, 10, 0.5)",
+    "rgba(137, 51, 41, 0.45)",
   ],
-},
+  tracks: [
+    { title: "1. Hell Of A Life", artist: "Kanye West", src: "hell-of-a-life-hw.mp3" },
+    { title: "2. Dark Fantasy", artist: "Kanye West", src: "dark-fantasy-hw.mp3" },
+    { title: "3. POWER", artist: "Kanye West", src: "power-hw.mp3" },
+    { title: "4. Chain Heavy", artist: "Kanye West", src: "chain-heavy-hw.mp3" },
+    { title: "5. Ghetto University", artist: "Kanye West", src: "ghetto-university-hw.mp3" },
+    { title: "6. That's My Bitch", artist: "Kanye West", src: "thats-my-bitch-hw.mp3" },
+    { title: "7. Runaway", artist: "Kanye West", src: "runaway-hw.mp3" },
+    { title: "8. Lost In The World", artist: "Kanye West", src: "lost-in-the-world-hw.mp3" },
+    { title: "9. Gorgeous", artist: "Kanye West", src: "gorgeous-hw.mp3" },
+    { title: "10. Monster", artist: "Kanye West", src: "monster-hw.mp3" },
+    { title: "11. Holding Me Back", artist: "Kanye West", src: "holding-me-back-hw.mp3" },
+    { title: "12. Devil In A New Dress", artist: "Kanye West", src: "devil-in-a-new-dress-hw.mp3" },
+    { title: "13. The Joy", artist: "Kanye West", src: "the-joy-hw.mp3" },
+    { title: "14. So Appalled", artist: "Kanye West", src: "so-appalled-hw.mp3" },
+    { title: "15. Blame Game", artist: "Kanye West", src: "blame-game-hw.mp3" },
+  ],
+  bonus: [
+    { title: "Sweat On My Face", artist: "Kanye West", src: "sweat-on-my-face-hw.mp3" },
+    { title: "See Me Now", artist: "Kanye West", src: "see-me-now.mp3" }
+]},
 
 {
   id: "kanyessoulmixshow",
@@ -447,28 +497,62 @@ bonus: [
   year: 2006,
   cover: "kanyessoulmixshow.jpg",
   glow: [
-  'rgba(255,200,90,0.6)',
-  'rgba(200,140,60,0.55)', 
-  'rgba(170,110,40,0.5)',  
-  'rgba(120,80,30,0.45)',  
-],
+    "rgba(255,200,90,0.6)",
+    "rgba(200,140,60,0.55)",
+    "rgba(170,110,40,0.5)",
+    "rgba(120,80,30,0.45)",
+  ],
   tracks: [
-    { title: "1. Intro", artist: "Kanye West", src: "intro-show.mp3" }
+    { title: "1. Intro", artist: "Kanye West", src: "intro-show.mp3" },
+    { title: "2. Wish You Were Here", artist: "Kanye West", src: "wish-you-were-here.mp3" },
+    { title: "3. Innocent 'Til Proven Guilty", artist: "Kanye West", src: "innocent-til-proven-guilty.mp3" },
+    { title: "4. Chicago", artist: "Kanye West", src: "chicago.mp3" },
+    { title: "5. Heart of the City", artist: "Kanye West", src: "heart-of-the-city.mp3" },
+    { title: "6. Common Man", artist: "Kanye West", src: "common-man.mp3" },
+    { title: "7. Strung Out", artist: "Kanye West", src: "strung-out.mp3" },
+    { title: "8. Wildflower", artist: "Kanye West", src: "wildflower.mp3" },
+    { title: "9. Ghetto Child", artist: "Kanye West", src: "ghetto-child.mp3" },
+    { title: "10. Peace and Love", artist: "Kanye West", src: "peace-and-love.mp3" },
+    { title: "11. Heavenly Dream", artist: "Kanye West", src: "heavenly-dream.mp3" },
+    { title: "12. I'll Erase Away Your Pain", artist: "Kanye West", src: "ill-erase-away-your-pain.mp3" },
+    { title: "13. A House Is Not a Home", artist: "Kanye West", src: "a-house-is-not-a-home.mp3" },
+    { title: "14. Through the Fire", artist: "Kanye West", src: "through-the-fire.mp3" },
+    { title: "15. Rosie", artist: "Kanye West", src: "rosie.mp3" },
+    { title: "16. My Funny Valentine", artist: "Kanye West", src: "my-funny-valentine.mp3" },
+    { title: "17. Home Is Where the Hatred Is", artist: "Kanye West", src: "home-is-where-the-hatred-is.mp3" },
+    { title: "18. Old Smokey", artist: "Kanye West", src: "old-smokey.mp3" },
+    { title: "19. Since You Came in My Life", artist: "Kanye West", src: "since-you-came-in-my-life.mp3" },
+    { title: "20. Move On Up", artist: "Kanye West", src: "move-on-up.mp3" },
+    { title: "21. It's Impossible", artist: "Kanye West", src: "its-impossible.mp3" },
+    { title: "22. Distant Lover", artist: "Kanye West", src: "distant-lover.mp3" },
+    { title: "23. Cause I Love You", artist: "Kanye West", src: "cause-i-love-you.mp3" }
   ],
 },
+
 {
   id: "lateorchestration",
   title: "Late Orchestration",
   year: 2006,
   cover: "lateorchestration.jpg",
   glow: [  
-  'rgba(160,120,40,0.55)', 
-  'rgba(120,80,40,0.5)',     
-  'rgba(100,60,30,0.45)',   
-  'rgba(70,40,20,0.45)',  
-],
+    "rgba(160,120,40,0.55)", 
+    "rgba(120,80,40,0.5)",     
+    "rgba(100,60,30,0.45)",   
+    "rgba(70,40,20,0.45)",  
+  ],
   tracks: [
-    { title: "1. Diamonds From Sierra Leone", artist: "Kanye West", src: "dfsl.mp3" }
+    { title: "1. Diamonds From Sierra Leone", artist: "Kanye West", src: "dfsl.mp3" },
+    { title: "2. Touch the Sky", artist: "Kanye West", src: "touch-the-sky.mp3" },
+    { title: "3. Crack Music", artist: "Kanye West", src: "crack-music.mp3" },
+    { title: "4. Drive Slow", artist: "Kanye West", src: "drive-slow.mp3" },
+    { title: "5. Through the Wire", artist: "Kanye West", src: "through-the-wire.mp3" },
+    { title: "6. The New Workout Plan", artist: "Kanye West", src: "the-new-workout-plan.mp3" },
+    { title: "7. Heard 'Em Say", artist: "Kanye West", src: "heard-em-say.mp3" },
+    { title: "8. All Falls Down", artist: "Kanye West", src: "all-falls-down.mp3" },
+    { title: "9. Bring Me Down", artist: "Kanye West", src: "bring-me-down.mp3" },
+    { title: "10. Gone", artist: "Kanye West", src: "gone.mp3" },
+    { title: "11. Late", artist: "Kanye West", src: "late.mp3" },
+    { title: "12. Jesus Walks", artist: "Kanye West", src: "jesus-walks.mp3" }
   ],
 bonus: [
     { title: "Gold Digger (AOL Sessions)", artist: "Kanye West", src: "gold-digger-aol.mp3" }
