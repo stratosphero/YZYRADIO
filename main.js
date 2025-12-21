@@ -282,20 +282,21 @@ glow: [
   'rgba(70, 70, 70, 0.22)'
 ],
  tracks: [
-  { title: "1. Never Coming Back", artist: "Kanye West, James Blake", src: "never-coming-back.mp3" },
-  { title: "2. Wake Up", artist: "Kanye West, James Blake", src: "wake-up.mp3" },
-  { title: "3. Quiet", artist: "Kanye West, James Blake", src: "quiet.mp3" },
-  { title: "4. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
-  { title: "5. What I Would Had Said At Virgil's Funeral", artist: "Kanye West, James Blake", src: "what-i-would-had-said-at-virgils-funeral.mp3" },
-  { title: "6. Let It In", artist: "Kanye West, James Blake", src: "let-it-in.mp3" },
-  { title: "7. All Is Love", artist: "Kanye West, James Blake", src: "all-is-love.mp3" },
-  { title: "8. My Way (Interlude)", artist: "Kanye West, James Blake", src: "my-way-interlude.mp3" },
-  { title: "9. Came Back", artist: "Kanye West, James Blake", src: "came-back.mp3" },
+  { title: "1. For Once In My Life", artist: "Kanye West, James Blake", src: "never-coming-back.mp3" },
+  { title: "2. What I Would Had Said At Virgil's Funeral", artist: "Kanye West, James Blake", src: "what-i-would-had-said-at-virgils-funeral.mp3" },
+  { title: "3. Talking", artist: "Kanye West, James Blake", src: "wake-up.mp3" },
+  { title: "4. Quiet", artist: "Kanye West, James Blake", src: "quiet.mp3" },
+  { title: "5. Hold Up, Get up", artist: "Kanye West, James Blake", src: "hold-up-get-up.mp3" },
+  { title: "6. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
+  { title: "7. Let It In", artist: "Kanye West, James Blake", src: "let-it-in.mp3" },
+  { title: "8. All Is Love", artist: "Kanye West, James Blake", src: "all-is-love.mp3" },
+  { title: "9. My Way (Interlude)", artist: "Kanye West, James Blake", src: "my-way-interlude.mp3" },
   { title: "10. Showtime", artist: "Kanye West, James Blake", src: "showtime.mp3" }
 ],
 bonus: [
   { title: "Things Change", artist: "Kanye West, James Blake", src: "things-change.mp3" },
-  { title: "Through The High Wire", artist: "Kanye West, James Blake", src: "through-the-high-wire.mp3" }
+  { title: "Through The High Wire", artist: "Kanye West, James Blake", src: "high-wire.mp3" },
+  { title: "Came Back", artist: "Kanye West, James Blake", src: "came-back.mp3" }
 
 ]},
   {
@@ -338,6 +339,39 @@ bonus: [
 bonus: [
     { title: "RIVER (AUGUST 3RD VERSION)", artist: "¥$, Kanye West, Ty Dolla $ign", src: "river-v2.mp3" }
 ]},
+
+{
+    id: "in-a-perfect-world",
+    title: "In A Perfect World",
+    year: 2025,
+    cover: "cuck.jpg",
+    glow: [
+  'rgba(255, 165, 0, 0.3)',
+  'rgba(255, 140, 0, 0.3)', 
+  'rgba(255, 200, 50, 0.25)', 
+  'rgba(255, 180, 60, 0.25)',
+  'rgba(255, 215, 0, 0.2)'  
+],
+  tracks: [
+  { title: "1. WW3", artist: "Ye, Kanye West", src: "ww3.mp3" },
+  { title: "2. COSBY", artist: "Ye, Kanye West", src: "cosby.mp3" },
+  { title: "3. DIDDY FREE", artist: "Ye, Kanye West", src: "diddy-free.mp3" },
+  { title: "4. DIRTY MAGAZINES", artist: "Ye, Kanye West", src: "dirty-magazines.mp3" },
+  { title: "5. JESUS", artist: "Ye, Kanye West", src: "jesus.mp3" },
+  { title: "6. BIANCA", artist: "Ye, Kanye West", src: "bianca.mp3" },
+  { title: "7. COUSINS", artist: "Ye, Kanye West", src: "cousins.mp3" },
+  { title: "8. VIRGIL", artist: "Ye, Kanye West", src: "virgil.mp3" },
+  { title: "9. UNCLE", artist: "Ye, Kanye West", src: "uncle.mp3" },
+  { title: "10. FREE MY KIDS", artist: "Ye, Kanye West", src: "free-my-kids.mp3" },
+  { title: "11. HEIL HITLER", artist: "Ye, Kanye West", src: "heil-hitler.mp3" },
+  { title: "12. GAS CHAMBERS", artist: "Ye, Kanye West", src: "gas-chambers.mp3" },
+  { title: "13. HITLER YE JESUS", artist: "Ye, Kanye West", src: "hitler-ye-jesus.mp3" },
+  { title: "14. JARED", artist: "Ye, Kanye West", src: "jared.mp3" },
+  { title: "15. NITROUS", artist: "Ye, Kanye West", src: "nitrous.mp3" }
+],
+  bonus: [
+    { title: "BIANCA V2", artist: "Ye, Kanye West", src: "bianca-v2.mp3" }
+  ]},
 
 {
   id: "bully",
@@ -558,6 +592,37 @@ bonus: [
 bonus: [
     { title: "Gold Digger (AOL Sessions)", artist: "Kanye West", src: "gold-digger-aol.mp3" }
 ]},
+
+
+  {
+    id: "cruel-winter",
+    title: "Cruel Winter",
+    year: 2014,
+    cover: "cruel-winter.jpg",
+    glow: [
+  'rgba(45, 55, 75, 0.22)',
+  'rgba(20, 28, 45, 0.18)',
+  'rgba(5, 8, 18, 0.15)'    
+],
+   tracks: [
+  { title: "1. Cruel Winter", artist: "Kanye West, 2 Chainz, Freddie Gibbs", src: "cruel-winter.mp3" },
+  { title: "2. Freestyle 4.1", artist: "Kanye West, Tyler, The Creator, Big Sean, A$AP Ferg, Desiigner, A$AP Rocky", src: "freestyle-4-1.mp3" },
+  { title: "3. Switch It Up", artist: "Kanye West, Pharrell Williams", src: "switch-it-up.mp3" },
+  { title: "4. Regular", artist: "Kanye West, Travis Scott, MadeinTYO", src: "regular.mp3" },
+  { title: "5. Freak On", artist: "Kanye West, Chris Brown", src: "freak-on.mp3" },
+  { title: "6. Emotional", artist: "Kanye West, Mustard", src: "emotional.mp3" },
+  { title: "7. Money Showers", artist: "Kanye West, Lil Yachty, Chance The Rapper", src: "money-showers.mp3" },
+  { title: "8. Champions", artist: "Kanye West, 2 Chainz, Big Sean, Quavo, Gucci Mane, Travis Scott, Teyana Taylor, Yo Gotti", src: "champions-cw.mp3" },
+  { title: "9. What A Year", artist: "Kanye West, Pharrell Williams", src: "what-a-year.mp3" },
+  { title: "10. In Common", artist: "Kanye West, Travis Scott, Alicia Keys", src: "in-common.mp3" },
+  { title: "11. Come Back To Me", artist: "Kanye West, Teyana Taylor, Rick Ross", src: "come-back-to-me.mp3" },
+  { title: "12. All I Know", artist: "Kanye West, The Weeknd, The-Dream, Big Sean, Quavo", src: "all-i-know.mp3" }
+],
+
+bonus: [
+    { title: "Love", artist: "Kanye West, Kid Cudi", src: "love.mp3" }
+]},
+
 ];
 
 const albumsContainer = document.getElementById("albumsContainer"),
