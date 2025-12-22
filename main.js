@@ -592,8 +592,6 @@ bonus: [
 bonus: [
     { title: "Gold Digger (AOL Sessions)", artist: "Kanye West", src: "gold-digger-aol.mp3" }
 ]},
-
-
   {
     id: "cruel-winter",
     title: "Cruel Winter",
