@@ -39,7 +39,9 @@ const albumsData = [
 ],
 bonus: [
     { title: "Monster", artist: "Kanye West", src: "monster.mp3" },
-    { title: "That's My Bitch", artist: "Kanye West", src: "thats-my-bitch.mp3" }
+    { title: "That's My Bitch", artist: "Kanye West", src: "thats-my-bitch.mp3" },
+    { title: "Only For The Night", artist: "Kanye West, Madlib", src: "only-for-the-night.mp3" }
+
 ]},
   {id:"tgfd",
  title:"Thank God For Drugs",
@@ -113,23 +115,23 @@ bonus: [
   glow: ['rgba(255,105,180,.25)','rgba(255,20,147,.25)','rgba(255,0,0,.2)'],
   tracks: [
     { title: "1. Chakras", artist: "Kanye West, The-Dream", src: "chakras.mp3" },
-    { title: "2. Calm (Interlude)", artist: "Kanye West, Ant Clemons, Ty Dolla $ign", src: "calm.mp3" },
+    { title: "2. Calm (Interlude)", artist: "Kanye West", src: "calm.mp3" },
     { title: "3. The Storm", artist: "Kanye West, Ty Dolla $ign, Kid Cudi, XXXTentacion", src: "the-storm.mp3" },
-    { title: "4. Spread Your Wings", artist: "Kanye West, Ant Clemons", src: "spread-your-wings.mp3" },
+    { title: "4. Spread Your Wings", artist: "Kanye West", src: "spread-your-wings.mp3" },
     { title: "5. New Body", artist: "Kanye West, Nicki Minaj, Ty Dolla $ign", src: "new-body.mp3" },
     { title: "6. 80 Degrees", artist: "Kanye West, Ant Clemons", src: "80-degrees.mp3" },
-    { title: "7. Alien (Interlude)", artist: "Kanye West, Ant Clemons", src: "alien-interlude.mp3" },
+    { title: "7. Alien (Interlude)", artist: "Kanye West", src: "alien-interlude.mp3" },
     { title: "8. Alien", artist: "Kanye West, Quavo, Young Thug, Kid Cudi, Ant Clemons", src: "alien.mp3" },
     { title: "9. Home", artist: "Kanye West, Ant Clemons", src: "home.mp3" },
     { title: "10. City In The Sky", artist: "Kanye West, Desiigner, Jeremih, Kid Cudi, The-Dream, Ty Dolla $ign, 070 Shake", src: "city-in-the-sky.mp3" },
-    { title: "11. Brothers", artist: "Kanye West, Ant Clemons", src: "brothers.mp3" },
+    { title: "11. Brothers", artist: "Kanye West, Charlie Wilson", src: "brothers.mp3" },
     { title: "12. Cash To Burn", artist: "Kanye West, Kenny G, Ant Clemons", src: "cash-to-burn.mp3" },
     { title: "13. We Got Love", artist: "Kanye West, Teyana Taylor", src: "we-got-love.mp3" },
     { title: "14. All Dreams Real", artist: "Kanye West, Ant Clemons", src: "all-dreams-real.mp3" },
     { title: "15. The Garden", artist: "Kanye West, Ant Clemons, Ty Dolla $ign, The-Dream, Teyana Taylor", src: "the-garden.mp3" },
     { title: "16. Last Name", artist: "Kanye West, Ant Clemons", src: "last-name.mp3" },
-    { title: "17. Law Of Attraction", artist: "Kanye West, Ant Clemons", src: "law-of-attraction.mp3" },
-    { title: "18. End Of It", artist: "Kanye West, Ant Clemons", src: "end-of-it.mp3" }
+    { title: "17. Law Of Attraction", artist: "Kanye West", src: "law-of-attraction.mp3" },
+    { title: "18. End Of It", artist: "Kanye West", src: "end-of-it.mp3" }
   ],
   bonus: [
     { title: "Bye Bye Baby", artist: "Kanye West", src: "bye-bye-baby.mp3" },
@@ -282,21 +284,20 @@ glow: [
   'rgba(70, 70, 70, 0.22)'
 ],
  tracks: [
-  { title: "1. For Once In My Life", artist: "Kanye West, James Blake", src: "never-coming-back.mp3" },
-  { title: "2. What I Would Had Said At Virgil's Funeral", artist: "Kanye West, James Blake", src: "what-i-would-had-said-at-virgils-funeral.mp3" },
-  { title: "3. Talking", artist: "Kanye West, James Blake", src: "wake-up.mp3" },
-  { title: "4. Quiet", artist: "Kanye West, James Blake", src: "quiet.mp3" },
-  { title: "5. Hold Up, Get up", artist: "Kanye West, James Blake", src: "hold-up-get-up.mp3" },
-  { title: "6. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
-  { title: "7. Let It In", artist: "Kanye West, James Blake", src: "let-it-in.mp3" },
-  { title: "8. All Is Love", artist: "Kanye West, James Blake", src: "all-is-love.mp3" },
-  { title: "9. My Way (Interlude)", artist: "Kanye West, James Blake", src: "my-way-interlude.mp3" },
-  { title: "10. Showtime", artist: "Kanye West, James Blake", src: "showtime.mp3" }
+  { title: "1. It's Not Supposed To Be Perfect", artist: "Kanye West, James Blake", src: "not-perfect.mp3" },
+  { title: "2. For Once In My Life", artist: "Kanye West, James Blake", src: "never-coming-back.mp3" },
+  { title: "3. What I Would Had Said At Virgil's Funeral", artist: "Kanye West, James Blake", src: "what-i-would-had-said-at-virgils-funeral.mp3" },
+  { title: "4. Talking", artist: "Kanye West, James Blake", src: "talking.mp3" },
+  { title: "5. Quiet", artist: "Kanye West, James Blake", src: "quiet.mp3" },
+  { title: "6. Hold Up, Get up", artist: "Kanye West, James Blake", src: "hold-up-get-up.mp3" },
+  { title: "7. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
+  { title: "8. Through The High Wire", artist: "Kanye West, James Blake", src: "high-wire.mp3" },
+  { title: "9. Showtime", artist: "Kanye West, James Blake", src: "showtime.mp3" }
 ],
 bonus: [
   { title: "Things Change", artist: "Kanye West, James Blake", src: "things-change.mp3" },
-  { title: "Through The High Wire", artist: "Kanye West, James Blake", src: "high-wire.mp3" },
-  { title: "Came Back", artist: "Kanye West, James Blake", src: "came-back.mp3" }
+  { title: "Came Back", artist: "Kanye West, James Blake", src: "came-back.mp3" },
+  { title: "All Is Love", artist: "Kanye West, James Blake", src: "all-is-love.mp3" },
 
 ]},
   {
@@ -315,9 +316,8 @@ bonus: [
       { title: "6. Someday We’ll All Be Free", artist: "Kanye West", src: "someday-well-all-be-free.mp3" },
       { title: "7. Love Love Love", artist: "Kanye West", src: "love-love-love.mp3" },
       { title: "8. All In Love", artist: "Kanye West", src: "all-in-love.mp3" },
-      { title: "9. Bobby Digital", artist: "Kanye West, James Blake", src: "bobby-digital.mp3" },
-      { title: "10. Matthew", artist: "Kanye West", src: "matthew.mp3" },
-      { title: "11. Big Boody (River)", artist: "Kanye West, Young Thug", src: "river.mp3" }
+      { title: "9. Matthew", artist: "Kanye West", src: "matthew.mp3" },
+      { title: "10. Big Boody (River)", artist: "Kanye West, Young Thug", src: "river.mp3" }
     ],
 bonus: [
     { title: "Lucifer", artist: "Kanye West", src: "lucifer.mp3" }
@@ -335,6 +335,7 @@ bonus: [
       { title: "3. DRUNK", artist: "¥$, Kanye West, Ty Dolla $ign", src: "drunk.mp3" },
       { title: "4. GUN TO MY HEAD", artist: "¥$, Kanye West, Ty Dolla $ign", src: "gun-to-my-head.mp3" },
       { title: "5. TAKE OFF YOUR DRESS", artist: "¥$, Kanye West, Ty Dolla $ign", src: "take-off-your-dress.mp3" },
+      { title: "6. CASH COW", artist: "¥$, Kanye West, Ty Dolla $ign, Skepta", src: "cash-cow.mp3" }
     ],
 bonus: [
     { title: "RIVER (AUGUST 3RD VERSION)", artist: "¥$, Kanye West, Ty Dolla $ign", src: "river-v2.mp3" }
@@ -522,6 +523,8 @@ bonus: [
     { title: "15. Blame Game", artist: "Kanye West", src: "blame-game-hw.mp3" },
   ],
   bonus: [
+    { title: "Christian Dior Demin Flow", artist: "Kanye West, Kid Cudi, Pusha T, John Legend", src: "cddf.mp3" },
+    { title: "POWER (Remix)", artist: "Kanye West, Jay-Z", src: "power-remix.mp3" },
     { title: "Sweat On My Face", artist: "Kanye West", src: "sweat-on-my-face-hw.mp3" },
     { title: "See Me Now", artist: "Kanye West", src: "see-me-now.mp3" }
 ]},
@@ -872,3 +875,8 @@ menuButton.addEventListener("click", () => {
     }, 400);
   }
 });
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+
